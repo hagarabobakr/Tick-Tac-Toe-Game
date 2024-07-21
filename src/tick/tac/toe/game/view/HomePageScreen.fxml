@@ -11,8 +11,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../resources/styles/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../resources/styles/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
       <VBox fx:id="Box" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../../style/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
             <Label fx:id="gameNameId" alignment="CENTER" prefHeight="50.0" prefWidth="500.0" styleClass="vBox" stylesheets="@../resources/styles/general.css" text="TIC TAC TOE" textAlignment="CENTER">
@@ -35,7 +35,7 @@
                               <Font name="Jokerman" size="15.0" />
                            </font>
                         </Text>
-                        <TextArea prefHeight="380.0" prefWidth="217.0" styleClass="listview" stylesheets="@../resources/styles/OnlinePlayersListScreen.css" text="player One&#10;&#10;player Two&#10;&#10;player Three">
+                        <TextArea fx:id="txtAreaId" prefHeight="380.0" prefWidth="217.0" styleClass="listview" stylesheets="@../resources/styles/OnlinePlayersListScreen.css" text="player One&#10;&#10;player Two&#10;&#10;player Three">
                            <font>
                               <Font name="Jokerman" size="15.0" />
                            </font>
@@ -43,14 +43,37 @@
                         <ListView fx:id="OnlinePlayersListId" prefHeight="200.0" prefWidth="130.0" styleClass="listview" stylesheets="@../resources/styles/OnlinePlayersListScreen.css" />
                      </children>
                   </VBox>
-                  <Button fx:id="btnContinueId" mnemonicParsing="false" prefHeight="56.0" prefWidth="141.0" styleClass="btn" stylesheets="@../resources/styles/OnlinePlayersListScreen.css" text="continue" textFill="WHITE">
+                  <VBox prefHeight="203.0" prefWidth="231.0">
+                     <children>
+                        <Button fx:id="btnRecordedGamesId" mnemonicParsing="false" prefHeight="49.0" prefWidth="220.0" styleClass="btn" stylesheets="@../resources/styles/InvitationRefusedScreen.css" text="recorded games" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Jokerman" size="17.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnStartId" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Start" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets left="50.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Jokerman" size="17.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnExiteId" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Exite" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets left="50.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Jokerman" size="19.0" />
+                           </font>
+                        </Button>
+                     </children>
                      <HBox.margin>
-                        <Insets left="50.0" top="130.0" />
+                        <Insets left="50.0" />
                      </HBox.margin>
-                     <font>
-                        <Font name="Jokerman" size="19.0" />
-                     </font>
-                  </Button>
+                  </VBox>
                </children>
                <VBox.margin>
                   <Insets left="20.0" right="20.0" top="5.0" />
