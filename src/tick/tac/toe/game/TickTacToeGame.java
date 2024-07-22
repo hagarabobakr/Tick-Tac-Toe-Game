@@ -19,7 +19,7 @@ public class TickTacToeGame extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/tick/tac/toe/game/view/SplashScreen.fxml"));
         
         Scene scene = new Scene(root);
         

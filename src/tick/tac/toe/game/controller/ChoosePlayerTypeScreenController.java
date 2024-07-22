@@ -22,27 +22,17 @@ import javafx.stage.Stage;
  *
  * @author bebawy
  */
-public class HomePageScreenController implements Initializable{
+public class ChoosePlayerTypeScreenController implements Initializable{
     @FXML
-    private Button btnRecordedGamesId;
+    private Button btnMultiplyPlayersId;
     @FXML
-    private Button btnStartId;
-    @FXML
-    private Button btnExiteId;
-    
-    
-
+    private Button btnSinglePlayerId;
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        if (event.getSource() == btnRecordedGamesId) {
-            changeScene(event, "/tick/tac/toe/game/view/RecordedGamesListScreen.fxml");
-        } else if (event.getSource() == btnStartId) {
-            changeScene(event, "/tick/tac/toe/game/view/GameBoardScreen.fxml");
-        } else if (event.getSource() == btnExiteId) {
-            System.exit(0);
-        }
+        if (event.getSource() == btnMultiplyPlayersId ||event.getSource() == btnSinglePlayerId) {
+            changeScene(event, "/tick/tac/toe/game/view/ChooseLevelOfDifficulty.fxml");
+        } 
     }
-
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -53,7 +43,7 @@ public class HomePageScreenController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
