@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="choosePlayerTypeScreenBackgroundId" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../../../resources/ChoosePlayerTypeScreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="choosePlayerTypeVBox" alignment="CENTER" layoutX="20.0" layoutY="20.0" prefHeight="300.0" prefWidth="450.0" styleClass="vBox" stylesheets="@../../../../../resources/ChoosePlayerTypeScreen.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Button fx:id="btnSinglePlayerId" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" prefWidth="280.0" styleClass="btn" stylesheets="@../../../../../resources/ChoosePlayerTypeScreen.css" text="Single Player" textOverrun="CLIP">
+               <VBox.margin>
+                  <Insets bottom="30.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Jokerman" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnMultiplyPlayersId" alignment="CENTER" defaultButton="true" mnemonicParsing="false" prefWidth="280.0" styleClass="btn" stylesheets="@../../../../../resources/ChoosePlayerTypeScreen.css" text="Multiply Players">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Jokerman" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
