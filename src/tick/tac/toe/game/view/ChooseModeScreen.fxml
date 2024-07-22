@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="chooseModeScreenBackgroundId" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../../../resources/ChooseModeScreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" fx:id="chooseModeScreenBackgroundId" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../../../resources/ChooseModeScreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.ChooseModeScreenController">
    <children>
       <VBox fx:id="chooseModeVBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../../../../../resources/ChooseModeScreen.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -34,7 +34,7 @@
                   </ImageView>
                   <VBox fx:id="onOROffVBox" alignment="CENTER" prefWidth="240.0">
                      <children>
-                        <Button fx:id="btnOfflineId" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" prefWidth="210.0" styleClass="btn" stylesheets="@../../../../../resources/ChooseModeScreen.css" text="ONLINE" textOverrun="CLIP">
+                        <Button fx:id="btnOnlineId" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#handleButtonAction" prefWidth="210.0" styleClass="btn" stylesheets="@../../../../../resources/ChooseModeScreen.css" text="ONLINE" textOverrun="CLIP">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
@@ -42,7 +42,7 @@
                               <Font name="Jokerman" size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnOnlineId" alignment="CENTER" defaultButton="true" mnemonicParsing="false" prefWidth="210.0" styleClass="btn" stylesheets="@../../../../../resources/ChooseModeScreen.css" text="OFFLINE">
+                        <Button fx:id="btnOfflineId" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#handleButtonAction" prefWidth="210.0" styleClass="btn" stylesheets="@../../../../../resources/ChooseModeScreen.css" text="OFFLINE">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
