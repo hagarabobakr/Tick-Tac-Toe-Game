@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" fx:id="chooseSymbolScreenBackgroundId" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../../../resources/ChooseSymbolScreen.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane id="AnchorPane" fx:id="chooseSymbolScreenBackgroundId" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../../../resources/ChooseSymbolScreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="chooseSymbolVBox" alignment="CENTER" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../../../../../resources/ChooseSymbolScreen.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -35,7 +34,7 @@
                         <Insets left="50.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Jokerman" size="18.0" />
+                        <Font name="Jokerman" size="20.0" />
                      </font>
                   </TextField>
                </children>
@@ -58,7 +57,7 @@
                         <Insets left="50.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Jokerman" size="18.0" />
+                        <Font name="Jokerman" size="20.0" />
                      </font>
                   </TextField>
                </children>
