@@ -49,7 +49,7 @@ public class ChooseLevelOfDifficultyController implements Initializable {
             difficulty = "Hard";
         }
 
-        changeScene(event,"/tick/tac/toe/game/view/GameBoardScreen.fxml", difficulty);
+        changeScene(event,"/tick/tac/toe/game/view/GameBoardSinglePlayerScreenController.fxml", difficulty);
     }
     
     private void changeScene(ActionEvent event, String fxmlFile, String difficulty) throws IOException {
@@ -57,7 +57,7 @@ public class ChooseLevelOfDifficultyController implements Initializable {
         Parent parent = loader.load();
 
         // Pass the difficulty level to the GameBoardScreenController
-        GameBoardScreenController controller = loader.getController();
+        GameBoardSinglePlayerScreenController controller = loader.getController();
         controller.setDifficultyLevel(difficulty);
 
         Scene scene = new Scene(parent);

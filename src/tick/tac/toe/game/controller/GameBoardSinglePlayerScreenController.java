@@ -11,10 +11,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
+ * FXML Controller class
  *
  * @author bebawy
  */
-public class GameBoardScreenController implements Initializable{
+public class GameBoardSinglePlayerScreenController implements Initializable {
+
+    /**
+     * Initializes the controller class.
+     */
     private String difficultyLevel;
 
     @FXML
@@ -29,5 +34,6 @@ public class GameBoardScreenController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+        
     
 }
