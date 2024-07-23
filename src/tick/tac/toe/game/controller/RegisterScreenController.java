@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tick.tac.toe.game.view;
+package tick.tac.toe.game.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -87,7 +87,7 @@ public class RegisterScreenController implements Initializable {
                     System.out.println("please fill confirmfield");
                 }
                 if(password.equals(confirmedPassword) == true){
-                    
+                   //send register request to server 
                 }
                 else{
                     System.out.println("be sure that confirmedPassword is the same of password ");

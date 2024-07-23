@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tick.tac.toe.game.view;
+package tick.tac.toe.game.controller;
 
 import java.io.IOException;
 import java.net.URL;

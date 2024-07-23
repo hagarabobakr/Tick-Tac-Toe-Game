@@ -3,16 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tick.tac.toe.game.view;
+package tick.tac.toe.game.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -28,13 +36,34 @@ public class RecordGameOptionScreenController implements Initializable {
     @FXML
     private Label TIClabel;
     @FXML
-    private Label recordlabel;
+    private CheckBox checkrecord;
     @FXML
-    private Button recordStart;
+    private Button Start;
 
     /**
      * Initializes the controller class.
      */
+    @FXML
+    private void handleButtonAction(ActionEvent event) throws IOException {
+        if (event.getSource() == Start) {
+            changeScene(event, "/tick/tac/toe/game/view/GameBoardScreen.fxml");
+        }
+        if (event.getSource() == checkrecord) {
+            //send request for record game 
+        }
+    }
+    
+    
+    
+    private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
