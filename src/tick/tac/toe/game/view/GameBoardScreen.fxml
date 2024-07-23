@@ -10,6 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../resources/styles/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" styleClass="vBox" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
@@ -42,9 +43,9 @@
                   </Label>
                </children>
             </VBox>
-            <FlowPane alignment="CENTER" columnHalignment="RIGHT" prefHeight="378.0" prefWidth="250.0" prefWrapLength="100.0" stylesheets="@../resources/styles/board.css">
+            <FlowPane fx:id="gameFlow" alignment="CENTER" columnHalignment="RIGHT" prefHeight="378.0" prefWidth="250.0" prefWrapLength="100.0" stylesheets="@../resources/styles/board.css">
                <children>
-                  <Button fx:id="Btn11" mnemonicParsing="false" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard" stylesheets="@../resources/styles/board.css">
+                  <Button fx:id="Btn11" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard" stylesheets="@../resources/styles/board.css">
                      <FlowPane.margin>
                         <Insets bottom="2.0" right="2.0" />
                      </FlowPane.margin>
@@ -52,41 +53,65 @@
                         <Font name="Jokerman" size="28.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Btn12" mnemonicParsing="false" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard" stylesheets="@../resources/styles/board.css">
+                  <Button fx:id="Btn12" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard" stylesheets="@../resources/styles/board.css">
                      <FlowPane.margin>
                         <Insets bottom="2.0" right="2.0" />
                      </FlowPane.margin>
+                     <font>
+                        <Font name="Jokerman" size="28.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="Btn13" mnemonicParsing="false" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard" stylesheets="@../resources/styles/board.css">
+                  <Button fx:id="Btn13" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard" stylesheets="@../resources/styles/board.css">
                      <FlowPane.margin>
                         <Insets bottom="2.0" />
                      </FlowPane.margin>
+                     <font>
+                        <Font name="Jokerman" size="28.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="Btn21" mnemonicParsing="false" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard">
+                  <Button fx:id="Btn21" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard">
                      <FlowPane.margin>
                         <Insets right="2.0" />
                      </FlowPane.margin>
+                     <font>
+                        <Font name="Jokerman" size="28.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="Btn22" mnemonicParsing="false" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard">
+                  <Button fx:id="Btn22" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard">
                      <FlowPane.margin>
                         <Insets right="2.0" />
                      </FlowPane.margin>
+                     <font>
+                        <Font name="Jokerman" size="28.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="Btn23" mnemonicParsing="false" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard" />
-                  <Button fx:id="Btn31" mnemonicParsing="false" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard">
+                  <Button fx:id="Btn23" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard">
+                     <font>
+                        <Font name="Jokerman" size="28.0" />
+                     </font></Button>
+                  <Button fx:id="Btn31" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard">
                      <FlowPane.margin>
                         <Insets right="2.0" top="2.0" />
                      </FlowPane.margin>
+                     <font>
+                        <Font name="Jokerman" size="28.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="Btn32" mnemonicParsing="false" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard">
+                  <Button fx:id="Btn32" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard">
                      <FlowPane.margin>
                         <Insets right="2.0" top="2.0" />
                      </FlowPane.margin>
+                     <font>
+                        <Font name="Jokerman" size="28.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="Btn33" mnemonicParsing="false" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard">
+                  <Button fx:id="Btn33" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="74.0" prefWidth="80.0" styleClass="btnBoard">
                      <FlowPane.margin>
                         <Insets top="2.0" />
                      </FlowPane.margin>
+                     <font>
+                        <Font name="Jokerman" size="28.0" />
+                     </font>
                   </Button>
                </children>
             </FlowPane>

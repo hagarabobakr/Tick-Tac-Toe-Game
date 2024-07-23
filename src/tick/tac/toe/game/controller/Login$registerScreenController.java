@@ -16,27 +16,43 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ChooseLevelOfDifficultyController implements Initializable {
-
-    
-    
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-}
+/**
+ * FXML Controller class
+ *
+ * @author mystore
+ */
+public class Login$registerScreenController implements Initializable {
 
     @FXML
-    private Button btnEasyId;
+    private AnchorPane Anchorpn;
+    @FXML
+    private VBox vbox;
+    @FXML
+    private Label TIClabel;
+    @FXML
+    private Button login;
+    @FXML
+    private Button regester;
 
+    /**
+     * Initializes the controller class.
+     */
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        if (event.getSource() == btnEasyId) {
-            changeScene(event, "/tick/tac/toe/game/view/ChooseSymbolScreen.fxml");
+        if (event.getSource() == regester) {
+            changeScene(event, "/tick/tac/toe/game/view/RegisterScreen.fxml");
+        }
+        if (event.getSource() == login) {
+            changeScene(event, "/tick/tac/toe/game/view/LoginScreen.fxml");
         }
     }
-
+    
+    
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -44,7 +60,9 @@ public class ChooseLevelOfDifficultyController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-}
-        
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
     
-
+}

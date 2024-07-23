@@ -23,7 +23,7 @@ import javafx.stage.Stage;
  * @author bebawy
  */
 public class ChoosePlayerTypeScreenController implements Initializable{
-    @FXML
+   @FXML
     private Button btnMultiplyPlayersId;
     @FXML
     private Button btnSinglePlayerId;
@@ -45,6 +45,7 @@ public class ChoosePlayerTypeScreenController implements Initializable{
     }
 
     @Override
+   
     public void initialize(URL location, ResourceBundle resources) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

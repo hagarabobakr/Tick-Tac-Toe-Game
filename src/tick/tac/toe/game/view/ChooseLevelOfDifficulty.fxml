@@ -22,7 +22,8 @@
                   <Insets left="150.0" />
                </padding>
             </Label>
-            <Button fx:id="btnEasyId" mnemonicParsing="false" onAction="#handleDifficultyButtonAction" prefHeight="50.0" prefWidth="300.0" styleClass="btn" stylesheets="@../../../../../resources/ChoosePlayerTypeScreen.css" text="Easy">
+
+            <Button fx:id="btnEasyId" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="300.0" styleClass="btn" stylesheets="@../../../../../resources/ChoosePlayerTypeScreen.css" text="Easy">
                <VBox.margin>
                   <Insets bottom="5.0" left="110.0" top="15.0" />
                </VBox.margin>
