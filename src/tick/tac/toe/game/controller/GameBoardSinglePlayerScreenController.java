@@ -9,6 +9,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -17,10 +20,37 @@ import javafx.fxml.Initializable;
  */
 public class GameBoardSinglePlayerScreenController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private Text playerXscore;
+    @FXML
+    private Text playerOscore;
+    @FXML
+    private Label playerxName;
+    @FXML
+    private Label playerOname;
+
+    @FXML
+    private Button Btn11;
+    @FXML
+    private Button Btn12;
+    @FXML
+    private Button Btn13;
+    @FXML
+    private Button Btn21;
+    @FXML
+    private Button Btn22;
+    @FXML
+    private Button Btn23;
+    @FXML
+    private Button Btn31;
+    @FXML
+    private Button Btn32;
+    @FXML
+    private Button Btn33;
+    
     private String difficultyLevel;
+    private String playerSymbol;
+    private boolean playerTurn;
 
     @FXML
     private void initialize() {

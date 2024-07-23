@@ -24,48 +24,8 @@ import javafx.stage.Stage;
  * @author bebawy
  */
 public class ChooseLevelOfDifficultyController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
-     
-
-    @FXML
-    private Button btnEasyId;
-    @FXML
-    private Button btnMediumId;
-    @FXML
-    private Button btnHardId;
-
-    @FXML
-    private void handleDifficultyButtonAction(ActionEvent event) throws IOException {
-        String difficulty = "";
-        
-        if (event.getSource() == btnEasyId) {
-            difficulty = "Easy";
-        } else if (event.getSource() == btnMediumId) {
-            difficulty = "Medium";
-        } else if (event.getSource() == btnHardId) {
-            difficulty = "Hard";
-        }
-
-        changeScene(event,"/tick/tac/toe/game/view/GameBoardSinglePlayerScreenController.fxml", difficulty);
-    }
     
-    private void changeScene(ActionEvent event, String fxmlFile, String difficulty) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-        Parent parent = loader.load();
-
-        // Pass the difficulty level to the GameBoardScreenController
-        GameBoardSinglePlayerScreenController controller = loader.getController();
-        controller.setDifficultyLevel(difficulty);
-
-        Scene scene = new Scene(parent);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

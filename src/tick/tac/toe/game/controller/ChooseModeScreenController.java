@@ -31,7 +31,7 @@ public class ChooseModeScreenController implements Initializable{
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         if (event.getSource() == btnOfflineId) {
-            changeScene(event, "/tick/tac/toe/game/view/ChooseLevelOfDifficulty.fxml");
+            changeScene(event, "/tick/tac/toe/game/view/ChoosePlayerTypeScreen.fxml");
         } else if (event.getSource() == btnOnlineId) {
             //changeScene(event, "/tick/tac/toe/game/view/GameBoardScreen.fxml");
         } 

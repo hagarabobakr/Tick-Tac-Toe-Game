@@ -29,9 +29,12 @@ public class ChoosePlayerTypeScreenController implements Initializable{
     private Button btnSinglePlayerId;
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        if (event.getSource() == btnMultiplyPlayersId ||event.getSource() == btnSinglePlayerId) {
-            changeScene(event, "/tick/tac/toe/game/view/ChooseLevelOfDifficulty.fxml");
-        } 
+        if (event.getSource() == btnMultiplyPlayersId) {
+            changeScene(event, "/tick/tac/toe/game/view/ChooseSymbolScreen.fxml");
+        } else if(event.getSource() == btnSinglePlayerId){
+            changeScene(event, "/tick/tac/toe/game/view/ChooseSymbolSinglePlayerScreen.fxml");
+        
+        }
     }
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
