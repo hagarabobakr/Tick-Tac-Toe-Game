@@ -16,10 +16,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
 import javafx.stage.Stage;
 
 public class ChooseLevelOfDifficultyController implements Initializable {
+
+    
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+}
 
     @FXML
     private Button btnEasyId;
@@ -38,9 +44,7 @@ public class ChooseLevelOfDifficultyController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Initialization logic, if any
-    }
 }
+        
+    
+
