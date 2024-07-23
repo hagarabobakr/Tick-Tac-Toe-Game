@@ -2,18 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-
-<AnchorPane id="AnchorPane" fx:id="Anchorpn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="tick.tac.toe.game.view.RecordGameOptionScreenController">
+<AnchorPane id="AnchorPane" fx:id="Anchorpn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.RecordGameOptionScreenController">
    <children>
       <VBox fx:id="vbox" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -28,17 +23,17 @@
                   <Insets left="40.0" />
                </padding>
             </Label>
-            <Label fx:id="recordlabel" prefHeight="57.0" prefWidth="348.0" text="Record the game" textFill="#ffd02d">
-               <font>
-                  <Font name="Jokerman" size="40.0" />
-               </font>
+            <CheckBox fx:id="checkrecord" mnemonicParsing="false" text="Record the game" textFill="#ffd02d">
                <VBox.margin>
-                  <Insets left="80.0" />
+                  <Insets left="60.0" />
                </VBox.margin>
-            </Label>
-            <Button fx:id="recordStart" mnemonicParsing="false" prefHeight="52.0" prefWidth="202.0" styleClass="btn" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" text="Start" textFill="WHITE">
+               <font>
+                  <Font name="Jokerman" size="37.0" />
+               </font>
+            </CheckBox>
+            <Button fx:id="Start" mnemonicParsing="false" prefHeight="52.0" prefWidth="202.0" styleClass="btn" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" text="Start" textFill="WHITE">
                <VBox.margin>
-                  <Insets left="150.0" top="50.0" />
+                  <Insets left="150.0" top="40.0" />
                </VBox.margin>
                <font>
                   <Font name="Jokerman" size="31.0" />
