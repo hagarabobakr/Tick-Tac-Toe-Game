@@ -160,11 +160,13 @@ public class GameBoardScreenController implements Initializable {
         }
     }
 
+
     private void waitForThreeSecondsAndMoveToShowRewardVideoScreen() {
         PauseTransition pause = new PauseTransition(Duration.seconds(10));
         pause.setOnFinished(event -> moveToShowRewardVideoScreen());
         pause.play();
     }
+
 
     private void showAlertAndReset() {
         Alert alert = new Alert(AlertType.INFORMATION, "No one wins the game.", ButtonType.OK);
