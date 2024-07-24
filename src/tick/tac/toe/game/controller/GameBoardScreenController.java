@@ -8,6 +8,7 @@ package tick.tac.toe.game.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class GameBoardScreenController implements Initializable {
 
@@ -84,7 +86,7 @@ public class GameBoardScreenController implements Initializable {
                 playerOscore.setText(String.valueOf(oScore));
             }
             isGameOver = true;  // Set the game over flag
-            moveToShowRewardVideoScreen();  // Move to reward video screen
+            waitForThreeSecondsAndMoveToShowRewardVideoScreen();  // Wait for three seconds then move to reward video screen
         } else if (isBoardFull()) {
             isGameOver = true;  // Set the game over flag if board is full
             showAlertAndReset();  // Show alert and reset game for a draw
@@ -156,6 +158,12 @@ public class GameBoardScreenController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void waitForThreeSecondsAndMoveToShowRewardVideoScreen() {
+        PauseTransition pause = new PauseTransition(Duration.seconds(10));
+        pause.setOnFinished(event -> moveToShowRewardVideoScreen());
+        pause.play();
     }
 
     private void showAlertAndReset() {
