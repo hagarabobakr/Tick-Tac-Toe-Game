@@ -16,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -67,13 +69,15 @@ public class LoginScreenController implements Initializable {
                     username = namefield.getText();
                 }
                 else{
-                    System.out.println("please fill namefield");
+                    showAlert(AlertType.ERROR, "uncomplete data", "Please fill namefield");
+                    return;
                 }
                 if(passwordfield.getText() != null){
                     password = passwordfield.getText();
                 }
                 else{
-                    System.out.println("please fill passwordfield");
+                    showAlert(AlertType.ERROR, "uncomplete data", "Please fill passwordfield");
+                    return;
                 }
             //send username and password to server   
             }
@@ -83,6 +87,16 @@ public class LoginScreenController implements Initializable {
     
     
     
+    
+    
+    @FXML
+    private void showAlert(AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
     
     
     @FXML
