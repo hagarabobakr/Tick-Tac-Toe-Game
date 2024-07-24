@@ -62,9 +62,7 @@ public class LoginScreenController implements Initializable {
     private String password = null;
     
     private void SendLoginRequest(){
-        login.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        login.setOnAction(event -> {
                 if(namefield.getText() != null){
                     username = namefield.getText();
                 }
@@ -80,7 +78,7 @@ public class LoginScreenController implements Initializable {
                     return;
                 }
             //send username and password to server   
-            }
+            
         });
          
     }
