@@ -4,12 +4,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
 
 <AnchorPane id="AnchorPane" fx:id="anchorId" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../resources/styles/general.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="tick.tac.toe.game.controller.ShowRewardVideoScreen1Controller">
    <children>
-      <VBox fx:id="vBoxId" layoutX="125.0" layoutY="50.0" prefHeight="333.0" prefWidth="522.0" styleClass="vBox" stylesheets="@../resources/styles/general.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+      <VBox fx:id="vBoxId" layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="500.0" styleClass="vBox" stylesheets="@../resources/styles/general.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
          <children>
             <Label fx:id="gameNameId" text="TIC TAC TOE">
                <font>
@@ -22,6 +23,7 @@
                   <Insets left="150.0" />
                </padding>
             </Label>
+            <MediaView fx:id="mediaViewId" fitWidth="500.0" fitHeight="300.0" />
          </children>
       </VBox>
    </children>
