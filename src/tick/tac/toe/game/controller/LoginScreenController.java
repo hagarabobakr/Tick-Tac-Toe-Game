@@ -5,9 +5,15 @@
  */
 package tick.tac.toe.game.controller;
 
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -58,28 +64,60 @@ public class LoginScreenController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    private String username = null;
-    private String password = null;
-    
+    String username = null;
+    String password = null;
+    @FXML
     private void SendLoginRequest(){
-        login.setOnAction(event -> {
-                if(namefield.getText() != null){
-                    username = namefield.getText();
+        Socket server;
+        DataInputStream ear;
+        PrintStream mouth;
+        try{
+            //take IP address from the previous screen
+            server = new Socket(InetAddress.getLocalHost(), 5005);
+            ear = new DataInputStream(server.getInputStream());
+            mouth = new PrintStream(server.getOutputStream());
+            login.setOnAction(event -> {
+                try {
+                    if(namefield.getText() != null){
+                        username = namefield.getText();
+                    }
+                    else{
+                        showAlert(AlertType.ERROR, "uncomplete data", "Please fill namefield");
+                        return;
+                    }
+                    if(passwordfield.getText() != null){
+                        password = passwordfield.getText();
+                    }
+                    else{
+                        showAlert(AlertType.ERROR, "uncomplete data", "Please fill passwordfield");
+                        return;
+                    }
+                    mouth.println(username);
+                    String Msg = ear.readLine();
+                    if(Msg=="exist"){
+                        mouth.println(password);
+                        String Msg2 = ear.readLine();
+                        if(Msg2=="true"){
+                            changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
+                        }
+                        else{
+                            showAlert(AlertType.ERROR, "incorrect Password", "Please enter the right password");
+                            return;
+                        }
+                        
+                    }
+                    else{
+                        showAlert(AlertType.ERROR, "wrong username", "Please enter the right username");
+                        return;
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginScreenController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                else{
-                    showAlert(AlertType.ERROR, "uncomplete data", "Please fill namefield");
-                    return;
-                }
-                if(passwordfield.getText() != null){
-                    password = passwordfield.getText();
-                }
-                else{
-                    showAlert(AlertType.ERROR, "uncomplete data", "Please fill passwordfield");
-                    return;
-                }
-            //send username and password to server   
-            
-        });
+            });
+        }catch(IOException ex){
+              ex.printStackTrace();
+         }
+         
          
     }
     
@@ -96,13 +134,6 @@ public class LoginScreenController implements Initializable {
         alert.showAndWait();
     }
     
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) throws IOException {
-        if (event.getSource() == login) {
-            changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
-        }
-    }
     
     
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
