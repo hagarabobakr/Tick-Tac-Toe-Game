@@ -28,6 +28,7 @@ public class Client {
             inputStream = new DataInputStream(mySocket.getInputStream());
             printstream = new PrintStream(mySocket.getOutputStream());
             System.out.println("connection opened");
+            
             AcceptResponses();
         } catch (IOException e) {
             //closeEveryThing(); function();
