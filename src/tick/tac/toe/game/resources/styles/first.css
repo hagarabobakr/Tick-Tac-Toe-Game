@@ -1,0 +1,34 @@
+.btn{
+    -fx-background-color: linear-gradient(to right,rgba(0,0,0,0.3),rgba(0,0,0,0.6));
+}
+
+.root{
+    -fx-background-size: contain, contain, contain, contain, contain, contain;
+    -fx-background-position: bottom, bottom, bottom, bottom, bottom, bottom;
+    -fx-background-repeat: repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x;
+    -fx-background-image:
+        url("https://s3-alpha-sig.figma.com/img/7a73/ae58/e02aa3db82ea8f569bed30f32f273a3d?Expires=1722211200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=A8aWHjn~dV5ujXRDm5yP0krsNmlJpA~WkhVlkP2DT9b1Yl12jSc0uUeAqBtJ~w4COUYfDsB1kId8QRb0tifFhyz5o4Gq3y04FRC9TgNMGyCcR4V9E0AbYeO621jb~HgfcbN0pu9Ccm3qt9KwJ1I~W-cPdxY6NaRJxJzyiaStLweRr1~uQdK~5vecF5pciELRJwWdR5E5YkDdZCA9-ae~~tLDmhUzZKPxF4GHrxzgfZWOM~Z0-C998jPbAAf2ZbwaBwfmtfkZ1Cgrpq~vr8fii0IlPSlcIkzoqe8BUbRdMpZOFA0v8H~08RnZYd50oyG5KBWVwMS238IfYRqKH6G7Mw__"); 
+
+}
+.vBox{
+    -fx-background-color: rgba(255, 251, 245, 0.98);
+}
+
+.btn{
+    -fx-border-radius:40px;
+    -fx-background-color: rgba(255, 208, 45, 1);
+   
+    
+}
+.proBar{
+    -fx-progress-color:#ffd02d;
+    -fx-spin-enabled:True;
+    -fx-indeterminate-bar-length:400;
+    -fx-indeterminate-bar-flip:false;
+    -fx-indeterminate-bar-animation-tim:5;
+    
+}
+
+.txtfield{
+    -fx-background-color: rgba(255, 208, 45, 0.41);
+}

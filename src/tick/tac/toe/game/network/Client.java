@@ -21,13 +21,14 @@ public class Client {
     public static DataInputStream inputStream ;
     public static PrintStream printstream ;
     
-     public static void openConnection() {
+     public static void openConnection(String ip) {
         
         try {
-            mySocket = new Socket("localhost", 5005);
+            mySocket = new Socket(ip, 5005);
             inputStream = new DataInputStream(mySocket.getInputStream());
             printstream = new PrintStream(mySocket.getOutputStream());
             System.out.println("connection opened");
+            
             AcceptResponses();
         } catch (IOException e) {
             //closeEveryThing(); function();
@@ -36,6 +37,22 @@ public class Client {
      
     private static void AcceptResponses(){
         //thread while(true)
+        new Thread(() -> {
+            try {
+                String response;
+                while (mySocket.isConnected() && (response = inputStream.readLine()) != null) {
+                   // ResponseHandler.handleResponse(response);
+                   System.out.println(response);
+                }
+            } catch (IOException ex) {
+                System.out.println("connection lost");
+                //closeEveryThing();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("connection lost problem in accept response");
+                //closeEveryThing();
+            }
+        }).start();
     }
     public static void sendRequest(String request){
         if(request == null)
