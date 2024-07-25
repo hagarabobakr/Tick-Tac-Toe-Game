@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -56,12 +55,15 @@ public class RegisterScreenController implements Initializable {
     @FXML
     private TextField namefield;
     @FXML
-    private TextField passwordfield;
+    private PasswordField passwordfield;
     @FXML
-    private TextField confirmfield;
+    private PasswordField confirmfield;
     @FXML
     private Button register;
-    
+
+    /**
+     * Initializes the controller class.
+     */
     private String username = null;
     private String password = null;
     private String confirmedPassword = null;
@@ -144,10 +146,7 @@ public class RegisterScreenController implements Initializable {
     }
     
     
-
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
