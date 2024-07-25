@@ -109,7 +109,8 @@ public class LoginScreenController_1 implements Initializable {
                         return;
                     }
                 } catch (IOException ex) {
-                    Logger.getLogger(LoginScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(LoginScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                    ex.printStackTrace();
                 }
             });
         }catch(IOException ex){
