@@ -31,21 +31,8 @@ import javafx.stage.Stage;
  * @author mystore
  */
 public class LoginScreenController implements Initializable {
-
-    @FXML
-    private AnchorPane Anchorpn;
-    @FXML
-    private VBox vbox;
-    @FXML
-    private GridPane gridpn;
-    @FXML
-    private ImageView nameicon;
-    @FXML
-    private Label namelabel;
-    @FXML
-    private Label passwordlabel;
-    @FXML
-    private ImageView passwordicon;
+    
+    
     @FXML
     private TextField passwordfield;
     @FXML

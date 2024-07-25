@@ -36,6 +36,21 @@ public class Client {
      
     private static void AcceptResponses(){
         //thread while(true)
+        new Thread(() -> {
+            try {
+                String response;
+                while (mySocket.isConnected() && (response = inputStream.readLine()) != null) {
+                   // ResponseHandler.handleResponse(response);
+                }
+            } catch (IOException ex) {
+                System.out.println("connection lost");
+                //closeEveryThing();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("connection lost problem in accept response");
+                //closeEveryThing();
+            }
+        }).start();
     }
     public static void sendRequest(String request){
         if(request == null)
