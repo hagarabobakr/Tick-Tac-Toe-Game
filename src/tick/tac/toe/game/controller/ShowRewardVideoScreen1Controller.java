@@ -7,17 +7,23 @@ package tick.tac.toe.game.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
 /**
  *
  * @author ayaah
  */
-public class ShowRewardVideoScreen1Controller implements Initializable{
+public class ShowRewardVideoScreen1Controller implements Initializable {
 
+
+  
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-         //To change body of generated methods, choose Tools | Templates.
+    public void initialize(URL url, ResourceBundle rb) {
+
     }
-    
 }

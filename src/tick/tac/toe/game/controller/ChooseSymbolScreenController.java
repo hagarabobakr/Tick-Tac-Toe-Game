@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tick.tac.toe.game.controller;
 
-;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,12 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-
-/**
- *
- * @author ayaah
- */
-
 
 public class ChooseSymbolScreenController implements Initializable {
 
@@ -52,10 +40,15 @@ public class ChooseSymbolScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Set a key listener on Player1Choose to handle input directly
         Player1Choose.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 handleSetChoice();
+            }
+        });
+
+        Player2Choose.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                handlePlayer2Choice();
             }
         });
     }
@@ -64,15 +57,42 @@ public class ChooseSymbolScreenController implements Initializable {
     private void handleSetChoice() {
         player1Symbol = Player1Choose.getText().trim().toUpperCase();
 
-        // Validate input
+        if (player1Symbol.isEmpty()) {
+            // Do not automatically set Player 2's symbol if Player 1's input is empty
+            player2Symbol = "";
+            Player2Choose.setText("");
+            return;
+        }
+
         if (!player1Symbol.equals("X") && !player1Symbol.equals("O")) {
-            showAlert(AlertType.ERROR, "Invalid Choice", "Please enter 'X' or 'O'.");
+            showAlert(AlertType.ERROR, "Invalid Choice", "Player 1 must enter 'X' or 'O'.");
             return;
         }
 
         // Set Player 2's choice
         player2Symbol = player1Symbol.equals("X") ? "O" : "X";
         Player2Choose.setText(player2Symbol);
+    }
+
+    @FXML
+    private void handlePlayer2Choice() {
+        player2Symbol = Player2Choose.getText().trim().toUpperCase();
+
+        if (player2Symbol.isEmpty()) {
+            // Do not automatically update Player 1's symbol if Player 2's input is empty
+            player1Symbol = "";
+            Player1Choose.setText("");
+            return;
+        }
+
+        if (!player2Symbol.equals("X") && !player2Symbol.equals("O")) {
+            showAlert(AlertType.ERROR, "Invalid Choice", "Player 2 must enter 'X' or 'O'.");
+            return;
+        }
+
+        // Automatically update Player 1's choice based on Player 2's input
+        player1Symbol = player2Symbol.equals("X") ? "O" : "X";
+        Player1Choose.setText(player1Symbol);
     }
 
     @FXML
@@ -86,9 +106,17 @@ public class ChooseSymbolScreenController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        if (event.getSource() == btnStartId) {
-            changeScene(event, "/tick/tac/toe/game/view/GameBoardScreen.fxml");
+        if (player1Symbol.isEmpty() || player2Symbol.isEmpty()) {
+            showAlert(AlertType.ERROR, "Incomplete Choice", "Both players must choose a symbol before starting.");
+            return;
         }
+
+        if (player1Symbol.equals(player2Symbol)) {
+            showAlert(AlertType.ERROR, "Invalid Choice", "Both players cannot have the same symbol.");
+            return;
+        }
+
+        changeScene(event, "/tick/tac/toe/game/view/GameBoardScreen.fxml");
     }
 
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
@@ -103,5 +131,4 @@ public class ChooseSymbolScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 }

@@ -15,7 +15,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +25,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -38,19 +38,30 @@ import javafx.stage.Stage;
  *
  * @author mystore
  */
-public class LoginScreenController implements Initializable {
-    
-    
+public class LoginScreenController_1 implements Initializable {
+
     @FXML
-    private TextField passwordfield;
+    private AnchorPane Anchorpn;
+    @FXML
+    private VBox vbox;
+    @FXML
+    private GridPane gridpn;
+    @FXML
+    private ImageView nameicon;
+    @FXML
+    private Label namelabel;
+    @FXML
+    private Label passwordlabel;
+    @FXML
+    private ImageView passwordicon;
+    @FXML
+    private PasswordField passwordfield;
     @FXML
     private TextField namefield;
     @FXML
     private Button login;
-
-    /**
-     * Initializes the controller class.
-     */
+    
+    
     String username = null;
     String password = null;
     @FXML
@@ -100,21 +111,11 @@ public class LoginScreenController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(LoginScreenController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-                else{
-                    System.out.println("please fill passwordfield");
-                }
-            //send username and password to server   
-            
-            }
-        });
-
             });
         }catch(IOException ex){
               ex.printStackTrace();
          }
          
-
          
     }
     
@@ -140,8 +141,9 @@ public class LoginScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    
-    
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
