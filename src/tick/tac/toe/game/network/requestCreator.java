@@ -23,5 +23,13 @@ public class requestCreator {
         return request.toString();
     }
     
-    
+    public static String register(String userName,String password){
+        JSONObject userData = new JSONObject();
+        userData.put("username", userName);
+        userData.put("password", password);
+        JSONObject request = new JSONObject();
+        request.put("request", "register");
+        request.put("data", userData);
+        return request.toString();
+    }
 }
