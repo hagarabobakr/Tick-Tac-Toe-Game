@@ -9,16 +9,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -54,48 +55,80 @@ public class RegisterScreenController implements Initializable {
     @FXML
     private TextField namefield;
     @FXML
-    private TextField passwordfield;
+    private PasswordField passwordfield;
     @FXML
-    private TextField confirmfield;
+    private PasswordField confirmfield;
     @FXML
     private Button register;
-    
+
+    /**
+     * Initializes the controller class.
+     */
     private String username = null;
     private String password = null;
     private String confirmedPassword = null;
     
     private void SendRegisterRequest(){
-        register.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        register.setOnAction(event -> {
                 if(namefield.getText() != null){
-                    username = namefield.getText();
+                    if(validation(namefield.getText())){
+                        username = namefield.getText();
+                    }
+                    else{
+                        showAlert(AlertType.ERROR, "invalid data", "username must contain both letters and numbers.");
+                        return;
+                    }
                 }
                 else{
-                    System.out.println("please fill namefield");
+                    showAlert(AlertType.ERROR, "uncomplete data", "Please fill namefield");
+                    return;
                 }
                 if(passwordfield.getText() != null){
-                    password = passwordfield.getText();
+                    if(validation(passwordfield.getText())){
+                        password = passwordfield.getText();
+                    }
+                    else{
+                        showAlert(AlertType.ERROR, "invalid data", "password must contain both letters and numbers.");
+                        return;
+                    }
                 }
                 else{
-                    System.out.println("please fill passwordfield");
+                    showAlert(AlertType.ERROR, "uncomplete data", "Please fill passwordfield");
+                    return;
                 }
                 if(confirmfield.getText() != null){
                      confirmedPassword = confirmfield.getText();
                 }
                 else{
-                    System.out.println("please fill confirmfield");
+                    showAlert(AlertType.ERROR, "uncomplete data", "Please fill confirm passwordfield");
+                    return;
                 }
                 if(password.equals(confirmedPassword) == true){
                    //send register request to server 
                 }
                 else{
-                    System.out.println("be sure that confirmedPassword is the same of password ");
+                    showAlert(AlertType.ERROR, "wrong data", "be sure that confirmedPassword is the same of password");
+                    return;
                 }
-            }
         });
          
     }
+    private boolean validation(String name) {
+        // Check if the name contains both letters and numbers
+        boolean hasLetter = name.matches(".*[a-zA-Z]+.*");
+        boolean hasNumber = name.matches(".*[0-9]+.*");
+        return hasLetter && hasNumber;
+    }
+    
+    @FXML
+    private void showAlert(AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
@@ -113,10 +146,7 @@ public class RegisterScreenController implements Initializable {
     }
     
     
-
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

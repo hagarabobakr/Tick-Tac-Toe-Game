@@ -52,7 +52,7 @@
                         <Font name="Jokerman" size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="Player2Choose" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="50.0" styleClass="TextFeild" stylesheets="@../../../../../resources/ChooseSymbolScreen.css">
+                  <TextField fx:id="Player2Choose" onAction="#handlePlayer2Choice" prefHeight="50.0" prefWidth="50.0" styleClass="TextFeild" stylesheets="@../../../../../resources/ChooseSymbolScreen.css">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
