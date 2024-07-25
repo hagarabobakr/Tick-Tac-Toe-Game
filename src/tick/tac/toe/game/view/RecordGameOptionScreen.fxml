@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="Anchorpn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.RecordGameOptionScreenController">
+<AnchorPane id="AnchorPane" fx:id="Anchorpn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../resources/styles/first.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.RecordGameOptionScreenController">
    <children>
-      <VBox fx:id="vbox" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <VBox fx:id="vbox" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../resources/styles/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
             <Label fx:id="TIClabel" prefHeight="53.0" prefWidth="292.0" text="TIC TAC TOE">
                <font>
@@ -31,7 +31,7 @@
                   <Font name="Jokerman" size="37.0" />
                </font>
             </CheckBox>
-            <Button fx:id="Start" mnemonicParsing="false" prefHeight="52.0" prefWidth="202.0" styleClass="btn" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" text="Start" textFill="WHITE">
+            <Button fx:id="Start" mnemonicParsing="false" prefHeight="52.0" prefWidth="202.0" styleClass="btn" stylesheets="@../resources/styles/first.css" text="Start" textFill="WHITE">
                <VBox.margin>
                   <Insets left="150.0" top="40.0" />
                </VBox.margin>

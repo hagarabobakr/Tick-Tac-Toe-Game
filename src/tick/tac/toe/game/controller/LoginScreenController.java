@@ -8,12 +8,9 @@ package tick.tac.toe.game.controller;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +35,7 @@ import javafx.stage.Stage;
  *
  * @author mystore
  */
-public class LoginScreenController_1 implements Initializable {
+public class LoginScreenController implements Initializable {
 
     @FXML
     private AnchorPane Anchorpn;
@@ -59,22 +56,30 @@ public class LoginScreenController_1 implements Initializable {
     @FXML
     private TextField namefield;
     @FXML
-    private Button login;
+    private Button backbtn;
+    @FXML
+    private Button loginbtn;
+
+    /**
+     * Initializes the controller class.
+     */
+    
     
     
     String username = null;
     String password = null;
+    Socket server;
+    DataInputStream ear;
+    PrintStream mouth;
     @FXML
     private void SendLoginRequest(){
-        Socket server;
-        DataInputStream ear;
-        PrintStream mouth;
+        
         try{
             //take IP address from the previous screen
             server = new Socket(InetAddress.getLocalHost(), 5005);
             ear = new DataInputStream(server.getInputStream());
             mouth = new PrintStream(server.getOutputStream());
-            login.setOnAction(event -> {
+            loginbtn.setOnAction(event -> {
                 try {
                     if(namefield.getText() != null){
                         username = namefield.getText();
@@ -120,7 +125,15 @@ public class LoginScreenController_1 implements Initializable {
          
     }
     
+    private void handleButtonAction(ActionEvent event) throws IOException {
+        if (event.getSource() == backbtn) {
+            changeScene(event, "/tick/tac/toe/game/view/Login$registerScreen.fxml");
+        }
+        if (event.getSource() == loginbtn) {
+            changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
+        }
     
+    }
     
     
     
@@ -142,9 +155,6 @@ public class LoginScreenController_1 implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

@@ -14,18 +14,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="Anchorpn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.LoginScreenController_1">
+<AnchorPane id="AnchorPane" fx:id="Anchorpn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../resources/styles/first.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.LoginScreenController">
    <children>
-      <VBox fx:id="vbox" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <VBox fx:id="vbox" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../resources/styles/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <GridPane fx:id="gridpn" prefHeight="139.0" prefWidth="500.0">
+            <GridPane fx:id="gridpn" prefHeight="235.0" prefWidth="500.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="244.0" minWidth="10.0" prefWidth="195.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="305.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="244.0" minWidth="10.0" prefWidth="208.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="292.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="12.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <VBox.margin>
                   <Insets top="30.0" />
@@ -36,7 +37,7 @@
                         <Insets left="150.0" />
                      </GridPane.margin>
                      <image>
-                        <Image url="@../../../../../../../../Users/mystore/Downloads/iconUserId.jpg" />
+                        <Image url="@../resources/images/iconUserId.jpg" />
                      </image>
                   </ImageView>
                   <Label fx:id="namelabel" prefHeight="38.0" prefWidth="125.0" text="User Name" textFill="#5cc8f6">
@@ -60,21 +61,29 @@
                         <Insets left="150.0" />
                      </GridPane.margin>
                      <image>
-                        <Image url="@../../../../../../../../Users/mystore/Pictures/WhatsApp%20Image%202024-07-22%20at%2016.24.13_497098de.jpg" />
+                        <Image url="@../resources/images/WhatsApp%20Image%202024-07-22%20at%2016.24.13_497098de.jpg" />
                      </image>
                   </ImageView>
-                  <PasswordField fx:id="passwordfield" prefHeight="44.0" prefWidth="305.0" styleClass="txtfield" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="namefield" prefHeight="50.0" prefWidth="280.0" styleClass="txtfield" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" GridPane.columnIndex="1" />
+                  <PasswordField fx:id="passwordfield" prefHeight="52.0" prefWidth="305.0" styleClass="txtfield" stylesheets="@../resources/styles/first.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="namefield" prefHeight="57.0" prefWidth="305.0" styleClass="txtfield" stylesheets="@../resources/styles/first.css" GridPane.columnIndex="1" />
+                  <Button fx:id="backbtn" mnemonicParsing="false" prefHeight="88.0" prefWidth="144.0" styleClass="btn" stylesheets="@../resources/styles/first.css" text="back" textFill="WHITE" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Jokerman" size="32.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="50.0" top="50.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="loginbtn" mnemonicParsing="false" prefHeight="88.0" prefWidth="144.0" styleClass="btn" stylesheets="@../resources/styles/first.css" text="Login" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Jokerman" size="32.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="90.0" top="50.0" />
+                     </GridPane.margin>
+                  </Button>
                </children>
             </GridPane>
-            <Button fx:id="login" mnemonicParsing="false" prefHeight="42.0" prefWidth="239.0" styleClass="btn" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" text="Login" textFill="WHITE">
-               <VBox.margin>
-                  <Insets left="130.0" top="40.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Jokerman" size="32.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
    </children>

@@ -48,7 +48,7 @@ public class RecordGameOptionScreenController implements Initializable {
         if (event.getSource() == Start) {
             changeScene(event, "/tick/tac/toe/game/view/GameBoardScreen.fxml");
         }
-        if (event.getSource() == checkrecord) {
+        if (checkrecord.isSelected()) {
             //send request for record game 
         }
     }

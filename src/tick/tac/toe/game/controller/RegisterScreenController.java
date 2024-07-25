@@ -59,11 +59,14 @@ public class RegisterScreenController implements Initializable {
     @FXML
     private PasswordField confirmfield;
     @FXML
+    private Button backbtn;
+    @FXML
     private Button register;
 
     /**
      * Initializes the controller class.
      */
+    
     private String username = null;
     private String password = null;
     private String confirmedPassword = null;
@@ -113,6 +116,16 @@ public class RegisterScreenController implements Initializable {
         });
          
     }
+    
+    private void handleButtonAction(ActionEvent event) throws IOException {
+        if (event.getSource() == backbtn) {
+            changeScene(event, "/tick/tac/toe/game/view/Login$registerScreen.fxml");
+        }
+        if (event.getSource() == register) {
+            changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
+        }
+    
+    }
     private boolean validation(String name) {
         // Check if the name contains both letters and numbers
         boolean hasLetter = name.matches(".*[a-zA-Z]+.*");
@@ -130,12 +143,7 @@ public class RegisterScreenController implements Initializable {
     }
     
     
-    @FXML
-    private void handleButtonAction(ActionEvent event) throws IOException {
-        if (event.getSource() == register) {
-            changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
-        }
-    }
+    
     
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
@@ -144,9 +152,6 @@ public class RegisterScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
