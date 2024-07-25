@@ -33,10 +33,10 @@ public class ChooseModeScreenController implements Initializable{
         if (event.getSource() == btnOfflineId) {
             changeScene(event, "/tick/tac/toe/game/view/ChoosePlayerTypeScreen.fxml");
         } else if (event.getSource() == btnOnlineId) {
-            //changeScene(event, "/tick/tac/toe/game/view/GameBoardScreen.fxml");
+            changeScene(event, "/tick/tac/toe/game/view/EnterIpScreen.fxml");
         } 
     }
-
+    
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);

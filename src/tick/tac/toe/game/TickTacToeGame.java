@@ -33,9 +33,9 @@ public class TickTacToeGame extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Client.openConnection("localhost"); 
-        String loginRequest = requestCreator.login("sammar", "1234");
-        Client.sendRequest(loginRequest);
+       // Client.openConnection("localhost"); 
+       // String loginRequest = requestCreator.login("sammar", "1234");
+       // Client.sendRequest(loginRequest);
         launch(args);
     }
     
