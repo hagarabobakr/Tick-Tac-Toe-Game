@@ -268,7 +268,7 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
 
     private void moveToShowRewardVideoScreen() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tick/tac/toe/game/view/ShowRewardVideoScreen1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tick/tac/toe/game/view/ShowRewardVideoScreen.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) Btn11.getScene().getWindow();
             Scene scene = new Scene(root);
@@ -281,7 +281,7 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
 
     private void moveToShowLoserVideoScreen() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tick/tac/toe/game/view/ShowLoserVideoScreen1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tick/tac/toe/game/view/ShowLoserVideoScreen.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) Btn11.getScene().getWindow();
             Scene scene = new Scene(root);
