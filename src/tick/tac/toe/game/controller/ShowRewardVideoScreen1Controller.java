@@ -20,6 +20,7 @@ import javafx.scene.media.MediaView;
  */
 public class ShowRewardVideoScreen1Controller implements Initializable {
 
+    
 
   
     @Override

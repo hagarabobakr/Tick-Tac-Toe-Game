@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tick.tac.toe.game.controller;
 
 import java.io.IOException;
@@ -86,7 +81,7 @@ public class GameBoardScreenController implements Initializable {
                 playerOscore.setText(String.valueOf(oScore));
             }
             isGameOver = true;  // Set the game over flag
-            waitForThreeSecondsAndMoveToShowRewardVideoScreen();  // Wait for three seconds then move to reward video screen
+            waitForTenSecondsAndMoveToShowRewardVideoScreen();  // Wait for three seconds then move to reward video screen
         } else if (isBoardFull()) {
             isGameOver = true;  // Set the game over flag if board is full
             showAlertAndReset();  // Show alert and reset game for a draw
@@ -161,7 +156,7 @@ public class GameBoardScreenController implements Initializable {
     }
 
 
-    private void waitForThreeSecondsAndMoveToShowRewardVideoScreen() {
+    private void waitForTenSecondsAndMoveToShowRewardVideoScreen() {
         PauseTransition pause = new PauseTransition(Duration.seconds(10));
         pause.setOnFinished(event -> moveToShowRewardVideoScreen());
         pause.play();
