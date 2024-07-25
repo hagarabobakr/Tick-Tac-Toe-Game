@@ -76,6 +76,7 @@ public class LoginScreenController implements Initializable {
                     System.out.println("please fill passwordfield");
                 }
             //send username and password to server   
+            
             }
         });
          
