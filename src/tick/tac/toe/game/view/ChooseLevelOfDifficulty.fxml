@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../../first.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.ChooseLevelOfDifficultyController">
+<AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="950.0" stylesheets="@../resources/styles/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.ChooseLevelOfDifficultyController">
     <children>
-      <VBox fx:id="vBoxId" layoutX="125.0" layoutY="50.0" prefHeight="333.0" prefWidth="522.0" styleClass="vBox" stylesheets="@../resources/styles/general.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+      <VBox fx:id="vBoxId" alignment="TOP_CENTER" layoutX="125.0" layoutY="50.0" prefHeight="333.0" prefWidth="522.0" styleClass="vBox" stylesheets="@../resources/styles/general.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
          <children>
-            <Label fx:id="gameNameId" text="TIC TAC TOE">
+            <Label fx:id="gameNameId" prefHeight="111.0" prefWidth="779.0" text="TIC TAC TOE">
                <font>
-                  <Font name="Jokerman" size="36.0" />
+                  <Font name="Jokerman" size="70.0" />
                </font>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -22,29 +22,28 @@
                   <Insets left="150.0" />
                </padding>
             </Label>
-
-            <Button fx:id="btnEasyId" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="300.0" styleClass="btn" stylesheets="@../../../../../resources/ChoosePlayerTypeScreen.css" text="Easy">
+            <Button fx:id="btnEasyId" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="80.0" prefWidth="650.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Easy" textFill="#f8f7f7">
                <VBox.margin>
-                  <Insets bottom="5.0" left="110.0" top="15.0" />
+                  <Insets bottom="20.0" top="30.0" />
                </VBox.margin>
                <font>
-                  <Font name="Jokerman" size="23.0" />
+                  <Font name="Jokerman" size="36.0" />
                </font>
             </Button>
-            <Button fx:id="btnMediumId" mnemonicParsing="false" onAction="#handleDifficultyButtonAction" prefHeight="51.0" prefWidth="300.0" styleClass="btn" stylesheets="@../../../../../resources/ChoosePlayerTypeScreen.css" text="Medium">
+            <Button fx:id="btnMediumId" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="80.0" prefWidth="650.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Medium" textFill="#fcfafa">
                <VBox.margin>
-                  <Insets bottom="5.0" left="110.0" top="15.0" />
+                  <Insets bottom="20.0" top="30.0" />
                </VBox.margin>
                <font>
-                  <Font name="Jokerman" size="23.0" />
+                  <Font name="Jokerman" size="36.0" />
                </font>
             </Button>
-            <Button fx:id="btnHardId" mnemonicParsing="false" onAction="#handleDifficultyButtonAction" prefHeight="49.0" prefWidth="300.0" styleClass="btn" stylesheets="@../../../../../resources/ChoosePlayerTypeScreen.css" text="Hard">
+            <Button fx:id="btnHardId" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="80.0" prefWidth="650.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Hard" textFill="WHITE">
                <VBox.margin>
-                  <Insets bottom="5.0" left="110.0" top="15.0" />
+                  <Insets bottom="20.0" top="30.0" />
                </VBox.margin>
                <font>
-                  <Font name="Jokerman" size="23.0" />
+                  <Font name="Jokerman" size="36.0" />
                </font>
             </Button>
          </children>
