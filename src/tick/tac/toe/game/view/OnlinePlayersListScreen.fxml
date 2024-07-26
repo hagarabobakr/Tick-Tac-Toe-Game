@@ -5,47 +5,54 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../resources/styles/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="950.0" styleClass="root" stylesheets="@../resources/styles/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <VBox fx:id="Box" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../../style/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <VBox fx:id="Box" alignment="TOP_CENTER" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../../style/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
             <Label fx:id="gameNameId" alignment="CENTER" prefHeight="50.0" prefWidth="500.0" styleClass="vBox" stylesheets="@../resources/styles/general.css" text="TIC TAC TOE" textAlignment="CENTER">
                <font>
-                  <Font name="Jokerman" size="36.0" />
+                  <Font name="Jokerman" size="56.0" />
                </font>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="203.0" prefWidth="500.0">
+            <HBox prefHeight="411.0" prefWidth="810.0">
                <children>
-                  <VBox prefHeight="203.0" prefWidth="217.0">
+                  <VBox prefHeight="411.0" prefWidth="471.0">
                      <children>
+                        <ImageView fx:id="backbtn" accessibleRole="BUTTON" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#handleImageAction" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/back.png" />
+                           </image>
+                        </ImageView>
                         <Text fx:id="txtOnlinePlayersId" fill="#ffd02d" strokeType="OUTSIDE" strokeWidth="0.0" text="Online players ">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Jokerman" size="15.0" />
+                              <Font name="Jokerman" size="41.0" />
                            </font>
                         </Text>
-                        <TextArea prefHeight="380.0" prefWidth="217.0" styleClass="listview" stylesheets="@../resources/styles/OnlinePlayersListScreen.css" text="player One&#10;&#10;player Two&#10;&#10;player Three">
+                        <TextArea prefHeight="336.0" prefWidth="280.0" styleClass="listview" stylesheets="@../resources/styles/OnlinePlayersListScreen.css" text="player One&#10;&#10;player Two&#10;&#10;player Three">
                            <font>
-                              <Font name="Jokerman" size="15.0" />
+                              <Font name="Jokerman" size="24.0" />
                            </font>
                         </TextArea>
-                        <ListView fx:id="OnlinePlayersListId" prefHeight="200.0" prefWidth="130.0" styleClass="listview" stylesheets="@../resources/styles/OnlinePlayersListScreen.css" />
+                        <ListView fx:id="OnlinePlayersListId" prefHeight="8.0" prefWidth="303.0" styleClass="listview" stylesheets="@../resources/styles/OnlinePlayersListScreen.css" />
                      </children>
                   </VBox>
-                  <Button fx:id="btnContinueId" mnemonicParsing="false" prefHeight="56.0" prefWidth="141.0" styleClass="btn" stylesheets="@../resources/styles/OnlinePlayersListScreen.css" text="continue" textFill="WHITE">
+                  <Button fx:id="btnContinueId" mnemonicParsing="false" prefHeight="78.0" prefWidth="277.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="continue" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="50.0" top="130.0" />
+                        <Insets left="50.0" top="300.0" />
                      </HBox.margin>
                      <font>
                         <Font name="Jokerman" size="19.0" />

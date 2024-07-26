@@ -41,7 +41,8 @@ public class Client {
             try {
                 String response;
                 while (mySocket.isConnected() && (response = inputStream.readLine()) != null) {
-                   // ResponseHandler.handleResponse(response);
+                    //adding response handler
+                   ResponseHandler.handleResponse(response);
                    System.out.println(response);
                 }
             } catch (IOException ex) {

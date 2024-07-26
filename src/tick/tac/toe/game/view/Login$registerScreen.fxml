@@ -3,39 +3,54 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="Anchorpn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../resources/styles/first.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.Login$registerScreenController">
+<AnchorPane id="AnchorPane" fx:id="Anchorpn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="950.0" styleClass="root" stylesheets="@../../../../../resources/first.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.Login$registerScreenController">
    <children>
-      <VBox fx:id="vbox" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../resources/styles/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <VBox fx:id="vbox" alignment="TOP_CENTER" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../resources/styles/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <Label fx:id="TIClabel" layoutX="10.0" layoutY="5.0" prefHeight="60.0" prefWidth="353.0" text="TIC TAC TOE">
+            <Label fx:id="TIClabel" layoutX="10.0" layoutY="5.0" prefHeight="80.0" prefWidth="427.0" text="TIC TAC TOE">
                <VBox.margin>
-                  <Insets bottom="30.0" left="80.0" right="30.0" top="20.0" />
+                  <Insets bottom="30.0" top="20.0" />
                </VBox.margin>
                <padding>
                   <Insets left="40.0" />
                </padding>
                <font>
-                  <Font name="Jokerman" size="39.0" />
+                  <Font name="Jokerman" size="51.0" />
                </font>
             </Label>
-            <Button fx:id="login" mnemonicParsing="false" prefHeight="56.0" prefWidth="394.0" styleClass="btn" stylesheets="@../resources/styles/first.css" text="login" textFill="WHITE">
+            <HBox fx:id="backbox" prefHeight="76.0" prefWidth="850.0" stylesheets="@../../../../../resources/first.css">
+               <children>
+                  <ImageView fx:id="backbtn" accessibleRole="BUTTON" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#handleImageAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/images/back.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="50.0" top="40.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Button fx:id="login" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="80.0" prefWidth="700.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="login" textFill="WHITE">
                <VBox.margin>
-                  <Insets left="50.0" />
+                  <Insets top="50.0" />
                </VBox.margin>
                <font>
-                  <Font name="Jokerman" size="34.0" />
+                  <Font name="Jokerman" size="40.0" />
                </font>
             </Button>
-            <Button fx:id="regester" mnemonicParsing="false" prefHeight="71.0" prefWidth="394.0" styleClass="btn" stylesheets="@../resources/styles/first.css" text="Regester" textFill="WHITE">
+            <Button fx:id="regester" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="80.0" prefWidth="700.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Regester" textFill="WHITE">
                <VBox.margin>
-                  <Insets left="50.0" top="30.0" />
+                  <Insets top="50.0" />
                </VBox.margin>
                <font>
-                  <Font name="Jokerman" size="28.0" />
+                  <Font name="Jokerman" size="40.0" />
                </font>
             </Button>
          </children>

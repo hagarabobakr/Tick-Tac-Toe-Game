@@ -1,11 +1,11 @@
 .btn{
     -fx-border-radius: 30px;
     -fx-background-radius: 30px;
-    -fx-background-color: rgba(255, 208, 45, 1);
+    -fx-background-color: rgba(92, 200, 246, 1);
    }
 .btn:hover{
     -fx-text-fill:white ;
-    -fx-background-color: #5CC8F6;
+    -fx-background-color: #FFD02D;
     -fx-background-radius: 30;
     -fx-border-radius: 30;
 
