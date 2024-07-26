@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -44,13 +45,20 @@ public class EnterIpScreenController implements Initializable {
     private void handleButtonAction(ActionEvent event) throws IOException {
         if (event.getSource() == btnConnect) {
             ip = txtIpAddress.getText();
-            if (ip != null) {
+            if (!ip.equals("")) {
                 Client.openConnection(ip);
-                if (!Client.mySocket.isClosed()) {
-                    changeScene(event, "/tick/tac/toe/game/view/RegisterScreen.fxml");
-
+                System.out.println(ip);
+                if(!Client.mySocket.isClosed()){
+                    changeScene(event,"/tick/tac/toe/game/view/Login$registerScreen.fxml");
+                }
+                else{
+                    showAlert("Connection Failed", "Could not establish connection to the server.");
                 }
             }
+            else{
+                showAlert("Connection Failed", "Could not establish connection to the server.");
+            }
+            
         }
     }
 
@@ -61,6 +69,14 @@ public class EnterIpScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    private void showAlert(String title, String message) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle(title);
+    alert.setHeaderText(null);
+    alert.setContentText(message);
+    alert.showAndWait();
+}
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
