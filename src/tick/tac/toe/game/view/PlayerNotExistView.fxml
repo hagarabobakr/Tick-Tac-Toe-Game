@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../resources/styles/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.PlayerNotExistViewController">
+   <children>
+      <VBox fx:id="splashScreen" alignment="CENTER" layoutX="10.0" layoutY="32.0" prefHeight="330.0" prefWidth="510.0" styleClass="vBox" stylesheets="@../../../../../resources/first.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="32.0">
+         <children>
+            <Label fx:id="gameNameId" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="349.0" stylesheets="@../../../../../resources/SplashScreen.css" text="TIC TAC TOE">
+               <font>
+                  <Font name="Jokerman" size="42.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="30.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="65.0" prefWidth="253.0" text="loginSuccess" textFill="#90ab5d">
+               <font>
+                  <Font size="44.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
