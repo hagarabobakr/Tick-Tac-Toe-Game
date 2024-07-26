@@ -11,7 +11,7 @@ import org.json.simple.JSONValue;
  *
  * @author Electronica Care
  */
-public class RequestCreator {
+public class requestCreator {
     
     public static String login(String userName,String password){
         JSONObject userData = new JSONObject();

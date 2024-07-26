@@ -7,6 +7,12 @@ package tick.tac.toe.game.network;
 
 import java.io.IOException;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import tick.tac.toe.game.TickTacToeGame;
@@ -17,20 +23,36 @@ import tick.tac.toe.game.controller.LoginScreenController_1;
  * @author Electronica Care
  */
 public class ResponseHandler {
+     public static String response;
+     private static ResponseListener listener;
+
+    public static void setListener(ResponseListener responseListener) {
+        listener = responseListener;
+    }
     public static void handleResponse(String responseString) {
         JSONObject requestObject = (JSONObject) JSONValue.parse(responseString);
-        String response = (String) requestObject.get("response");
+         response = (String) requestObject.get("response");
 
+         switch(response){
+             case "loginSuccess":
+                 //LoginScreenController_1.r="/tick/tac/toe/game/view/EnterIpScreen.fxml";
+                 break;
+         }
+//        Platform.runLater(() -> {
+//            if (response.equals("loginSuccess")) { // Use 'response' here, not 'responseString'
+//                
+//                    // Instead of creating a new controller, you should use the one that JavaFX uses with the FXML
+//                   // LoginScreenController_1 loginController = new LoginScreenController_1();
+//                    //TickTacToeGame.setRoot("HomePageScreen");
+//                    //loginController.onResponse(responseString);
+//                   // LoginScreenController_1.root="/tick/tac/toe/game/view/EnterIpScreen.fxml";
+//                
+//            }
+//        });
         Platform.runLater(() -> {
-            if (response.equals("loginSuccess")) { // Use 'response' here, not 'responseString'
-                try {
-                    // Instead of creating a new controller, you should use the one that JavaFX uses with the FXML
-                    LoginScreenController_1 loginController = new LoginScreenController_1();
-                    TickTacToeGame.setRoot("HomePageScreen", loginController);
-                    loginController.onResponse(responseString);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            if (listener != null) {
+                
+                listener.onResponse(response);
             }
         });
     }
