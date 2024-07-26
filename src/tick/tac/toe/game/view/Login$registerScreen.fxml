@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" fx:id="Anchorpn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="tick.tac.toe.game.controller.Login$registerScreenController">
+<AnchorPane id="AnchorPane" fx:id="Anchorpn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../../../resources/first.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.Login$registerScreenController">
    <children>
-      <VBox fx:id="vbox" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <VBox fx:id="vbox" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../resources/styles/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
             <Label fx:id="TIClabel" layoutX="10.0" layoutY="5.0" prefHeight="60.0" prefWidth="353.0" text="TIC TAC TOE">
                <VBox.margin>
@@ -23,7 +22,7 @@
                   <Font name="Jokerman" size="39.0" />
                </font>
             </Label>
-            <Button fx:id="login" mnemonicParsing="false" prefHeight="56.0" prefWidth="394.0" styleClass="btn" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" text="login" textFill="WHITE">
+            <Button fx:id="login" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="56.0" prefWidth="394.0" styleClass="btn" stylesheets="@../resources/styles/first.css" text="login" textFill="WHITE">
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
@@ -31,7 +30,7 @@
                   <Font name="Jokerman" size="34.0" />
                </font>
             </Button>
-            <Button fx:id="regester" mnemonicParsing="false" prefHeight="71.0" prefWidth="394.0" styleClass="btn" stylesheets="@../../../../../../../../Users/mystore/Desktop/first.css" text="Regester" textFill="WHITE">
+            <Button fx:id="regester" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="71.0" prefWidth="394.0" styleClass="btn" stylesheets="@../../../../../resources/first.css" text="Regester" textFill="WHITE">
                <VBox.margin>
                   <Insets left="50.0" top="30.0" />
                </VBox.margin>
