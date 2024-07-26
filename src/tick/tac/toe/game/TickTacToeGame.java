@@ -34,16 +34,13 @@ public class TickTacToeGame extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       // Client.openConnection("localhost"); 
-       // String loginRequest = requestCreator.login("sammar", "1234");
-       // Client.sendRequest(loginRequest);
         launch(args);
     }
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TickTacToeGame.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TickTacToeGame.class.getResource("/tick/tac/toe/game/view/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
     

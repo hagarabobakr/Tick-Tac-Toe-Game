@@ -20,6 +20,7 @@ public class Client {
     public static Socket mySocket;
     public static DataInputStream inputStream ;
     public static PrintStream printstream ;
+    public static String response;
     
      public static void openConnection(String ip) {
         
@@ -39,7 +40,7 @@ public class Client {
         //thread while(true)
         new Thread(() -> {
             try {
-                String response;
+                //String response;
                 while (mySocket.isConnected() && (response = inputStream.readLine()) != null) {
                     //adding response handler
                    ResponseHandler.handleResponse(response);

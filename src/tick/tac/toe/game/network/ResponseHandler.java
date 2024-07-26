@@ -16,78 +16,30 @@ import tick.tac.toe.game.TickTacToeGame;
  * @author Electronica Care
  */
 public class ResponseHandler {
-    public static void handleResponse(String responseString) {
+   public static void handleResponse(String responseString) {
 
         JSONObject requestObject = (JSONObject) JSONValue.parse(responseString);
-        String response = (String) requestObject.get("response");
+         String response = (String) requestObject.get("response");
         JSONObject data = (JSONObject) requestObject.get("data");
-        switch (response) {
-            case "playerNotExists":
-               // handlePlayerNotExist();
-                break;
-            case "wrongPassword":
-               // handleWrongPassword();
-                break;
-            case "loginSuccess":
-                //handleLoginSuccess(data);
-                break;
-            case "player already online":
-                //handlePlayerAlreadyOnline(data);
-                break;
-            case "player exists":
-                //handlePlayerExist();
-                break;
-            case "reqister sucsess":
-                //handleRegisterSuccess();
-                break;
-            case "online players list":
-                //onlinePlayersList(data);
-                break;
-            case "all players list":
-                //handleAllPlayersList(data);
-                break;
-            case "add new player":
-                //handleAddNewPlayer(data);
-                break;
-            case "player left the game":
-                //handlePlayerLeftTheGame(data);
-                break;
-            case "player in game":
-                //handlePlayerInGame(data);
-                break;
-            case "player is offline":
-                //handlePlayerIsOffline(data);
-                break;
-            case "game invitation":
-                //handleGameInvitation(data);
-                break;
-            case "invitationSended":
-                //handleInvitationSended(data);
-                break;
-            case "invitationRejected":
-                //handleInvitationRejected(data);
-                break;
-            case "choose x or o":
-                //handleChooseXOrO(data);
-                break;
-            case "update player data":
-                //handleUpdatePlayerData(data);
-                break;
-            case "updateAvilablePlayesList":
-                //handleUpdateAvilablePlayersList(data);
-                break;
-            case "player left multi game":
-                //handlePlayerLeftMultiGame(data);
-                break;
-            case "serverIsClosed":
-                //handleServerIsClosed();
-                break;
-            case "multi mode game history":
-                //handelMultiModeGameHistory(data);
-                break;
-            default:
-                break;
-        }
+        Platform.runLater(() -> {
+            switch (response) {
+                case "loginSuccess":
+                    try {
+                        TickTacToeGame.setRoot("SplashScreen");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "playerNotExists":
+                    // handlePlayerNotExist();
+                    break;
+                case "wrongPassword":
+                    // handleWrongPassword();
+                    break;
+                default:
+                    break;
+            }
+       });
     }
     private static void handlePlayerNotExist() {
         Platform.runLater(() -> {
