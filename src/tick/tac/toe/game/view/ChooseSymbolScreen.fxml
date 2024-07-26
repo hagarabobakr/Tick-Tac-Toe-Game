@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="chooseSymbolScreenBackgroundId" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../../../../resources/ChooseSymbolScreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.ChooseSymbolScreenController">
+<AnchorPane id="AnchorPane" fx:id="chooseSymbolScreenBackgroundId" prefHeight="630.0" prefWidth="950.0" styleClass="root" stylesheets="@../../../../../resources/ChooseSymbolScreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.ChooseSymbolScreenController">
    <children>
       <VBox fx:id="chooseSymbolVBox" alignment="CENTER" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../../../../../resources/ChooseSymbolScreen.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -21,20 +21,20 @@
                   <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <Label fx:id="player1" stylesheets="@../../../../../resources/ChooseSymbolScreen.css" text="Player 1">
+                  <Label fx:id="player1" prefHeight="100.0" prefWidth="226.0" stylesheets="@../../../../../resources/ChooseSymbolScreen.css" text="Player 1">
                      <HBox.margin>
                         <Insets left="10.0" right="60.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Jokerman" size="24.0" />
+                        <Font name="Jokerman" size="46.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="Player1Choose" alignment="CENTER" onAction="#handleSetChoice" prefHeight="50.0" prefWidth="50.0" styleClass="TextFeild" stylesheets="@../../../../../resources/ChooseSymbolScreen.css">
+                  <TextField fx:id="Player1Choose" alignment="CENTER" onAction="#handleSetChoice" prefHeight="300.0" prefWidth="150.0" styleClass="TextFeild" stylesheets="@../../../../../resources/ChooseSymbolScreen.css">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Jokerman" size="20.0" />
+                        <Font name="Jokerman" size="40.0" />
                      </font>
                   </TextField>
                </children>
@@ -44,20 +44,20 @@
                   <Insets />
                </opaqueInsets>
                <children>
-                  <Label fx:id="player2" stylesheets="@../../../../../resources/ChooseSymbolScreen.css" text="Player 2">
+                  <Label fx:id="player2" prefHeight="100.0" prefWidth="226.0" stylesheets="@../../../../../resources/ChooseSymbolScreen.css" text="Player 2">
                      <HBox.margin>
                         <Insets left="10.0" right="60.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Jokerman" size="24.0" />
+                        <Font name="Jokerman" size="46.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="Player2Choose" onAction="#handlePlayer2Choice" prefHeight="50.0" prefWidth="50.0" styleClass="TextFeild" stylesheets="@../../../../../resources/ChooseSymbolScreen.css">
+                  <TextField fx:id="Player2Choose" onAction="#handlePlayer2Choice" prefHeight="300.0" prefWidth="150.0" styleClass="TextFeild" stylesheets="@../../../../../resources/ChooseSymbolScreen.css">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Jokerman" size="20.0" />
+                        <Font name="Jokerman" size="40.0" />
                      </font>
                   </TextField>
                </children>
@@ -65,12 +65,12 @@
                   <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                </VBox.margin>
             </HBox>
-            <Button fx:id="btnStartId" mnemonicParsing="false" onAction="#handleButtonAction" prefWidth="250.0" styleClass="btn" stylesheets="@../../../../../resources/ChooseSymbolScreen.css" text="Start" textAlignment="CENTER">
+            <Button fx:id="btnStartId" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="84.0" prefWidth="398.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Start" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" />
                </VBox.margin>
                <font>
-                  <Font name="Jokerman" size="24.0" />
+                  <Font name="Jokerman" size="41.0" />
                </font>
             </Button>
          </children>

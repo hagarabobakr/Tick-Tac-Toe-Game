@@ -28,6 +28,7 @@ public class Client {
             inputStream = new DataInputStream(mySocket.getInputStream());
             printstream = new PrintStream(mySocket.getOutputStream());
             System.out.println("connection opened");
+            
             AcceptResponses();
         } catch (IOException e) {
             //closeEveryThing(); function();
@@ -40,7 +41,8 @@ public class Client {
             try {
                 String response;
                 while (mySocket.isConnected() && (response = inputStream.readLine()) != null) {
-                   // ResponseHandler.handleResponse(response);
+                    //adding response handler
+                   ResponseHandler.handleResponse(response);
                    System.out.println(response);
                 }
             } catch (IOException ex) {

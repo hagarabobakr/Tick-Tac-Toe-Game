@@ -8,32 +8,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../resources/styles/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="950.0" styleClass="root" stylesheets="@../resources/styles/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.EnterIpScreenController">
    <children>
-      <VBox fx:id="Box" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../../style/first.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <VBox fx:id="Box" alignment="TOP_CENTER" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" styleClass="vBox" stylesheets="@../resources/styles/general.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
             <Label alignment="CENTER" prefHeight="49.0" prefWidth="500.0" text="TIC TAC TOE" textAlignment="CENTER">
                <font>
-                  <Font name="Jokerman" size="48.0" />
+                  <Font name="Jokerman" size="70.0" />
                </font>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="30.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="txtIpAddress" opacity="0.5" prefHeight="55.0" prefWidth="400.0" promptText="ip address" styleClass="txtBox" stylesheets="@../resources/styles/general.css">
+            <TextField fx:id="txtIpAddress" opacity="0.5" prefHeight="72.0" prefWidth="439.0" promptText="ip address" styleClass="txtBox" stylesheets="@../resources/styles/general.css">
                <font>
-                  <Font name="Jokerman" size="24.0" />
+                  <Font name="Jokerman" size="28.0" />
                </font>
                <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="50.0" top="30.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="btnConnect" alignment="CENTER" minHeight="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="229.0" style="-fx-background-color: #FFD02D;" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Connect" textFill="WHITE">
+            <Button fx:id="btnConnect" alignment="CENTER" minHeight="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="74.0" prefWidth="524.0" style="-fx-background-color: #FFD02D;" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Connect" textFill="WHITE">
                <font>
-                  <Font name="Jokerman" size="24.0" />
+                  <Font name="Jokerman" size="29.0" />
                </font>
                <VBox.margin>
-                  <Insets left="160.0" top="30.0" />
+                  <Insets bottom="50.0" top="30.0" />
                </VBox.margin>
             </Button>
          </children>

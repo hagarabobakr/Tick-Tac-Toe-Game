@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
+ /* To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package tick.tac.toe.game.controller;
 
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,10 +21,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import tick.tac.toe.game.network.Client;
+import tick.tac.toe.game.network.requestCreator;
 
 /**
  * FXML Controller class
@@ -41,100 +37,35 @@ import javafx.stage.Stage;
 public class LoginScreenController_1 implements Initializable {
 
     @FXML
-    private AnchorPane Anchorpn;
-    @FXML
-    private VBox vbox;
-    @FXML
-    private GridPane gridpn;
-    @FXML
-    private ImageView nameicon;
-    @FXML
-    private Label namelabel;
-    @FXML
-    private Label passwordlabel;
-    @FXML
-    private ImageView passwordicon;
-    @FXML
     private PasswordField passwordfield;
     @FXML
     private TextField namefield;
     @FXML
-    private Button login;
-    
-    
+    private ImageView backbtn;
+    @FXML
+    private Button loginbtn;
+
+    /**
+     * Initializes the controller class.
+     */
     String username = null;
     String password = null;
+
     @FXML
-    private void SendLoginRequest(){
-        Socket server;
-        DataInputStream ear;
-        PrintStream mouth;
-        try{
-            //take IP address from the previous screen
-            server = new Socket(InetAddress.getLocalHost(), 5005);
-            ear = new DataInputStream(server.getInputStream());
-            mouth = new PrintStream(server.getOutputStream());
-            login.setOnAction(event -> {
-                try {
-                    if(namefield.getText() != null){
-                        username = namefield.getText();
-                    }
-                    else{
-                        showAlert(AlertType.ERROR, "uncomplete data", "Please fill namefield");
-                        return;
-                    }
-                    if(passwordfield.getText() != null){
-                        password = passwordfield.getText();
-                    }
-                    else{
-                        showAlert(AlertType.ERROR, "uncomplete data", "Please fill passwordfield");
-                        return;
-                    }
-                    mouth.println(username);
-                    String Msg = ear.readLine();
-                    if(Msg=="exist"){
-                        mouth.println(password);
-                        String Msg2 = ear.readLine();
-                        if(Msg2=="true"){
-                            changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
-                        }
-                        else{
-                            showAlert(AlertType.ERROR, "incorrect Password", "Please enter the right password");
-                            return;
-                        }
-                        
-                    }
-                    else{
-                        showAlert(AlertType.ERROR, "wrong username", "Please enter the right username");
-                        return;
-                    }
-                } catch (IOException ex) {
-                    //Logger.getLogger(LoginScreenController.class.getName()).log(Level.SEVERE, null, ex);
-                    ex.printStackTrace();
-                }
-            });
-        }catch(IOException ex){
-              ex.printStackTrace();
-         }
-         
-         
+    private void handleButtonAction(ActionEvent event) throws IOException {
+        if (event.getSource() == loginbtn) {
+            username = namefield.getText();
+            password = passwordfield.getText();
+            if (!(username.equals("") && password.equals(""))) {
+                Client.sendRequest(requestCreator.login(username, password));
+            }
+        } else {
+            
+            changeScene(event,"/tick/tac/toe/game/view/Login$registerScreen.fxml");
+        }
     }
     
-    
-    
-    
-    
-    @FXML
-    private void showAlert(AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-    
-    
-    
+
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -142,12 +73,10 @@ public class LoginScreenController_1 implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+    public void initialize(URL location, ResourceBundle resources) {
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
