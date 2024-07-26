@@ -1,13 +1,7 @@
 .btn{
     -fx-background-color: linear-gradient(to right,rgba(0,0,0,0.3),rgba(0,0,0,0.6));
 }
-.body{
-    -fx-background-size: contain, contain, contain, contain, contain, contain;
-    -fx-background-position: bottom, bottom, bottom, bottom, bottom, bottom;
-    -fx-background-repeat: repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x;
-    -fx-background-image: url("https://drive.google.com/file/d/1OimlX-7_QjiWLkbNgW7ft_v9dSYO8bNY/view?usp=sharing");
-    
-}
+
 .root{
     -fx-background-size: contain, contain, contain, contain, contain, contain;
     -fx-background-position: bottom, bottom, bottom, bottom, bottom, bottom;
@@ -17,13 +11,10 @@
 
 }
 .vBox{
-    -fx-background-color: rgba(255, 251, 245, 0.98);
-}
-.txtBox{
-    -fx-background-color:rgba(255, 208, 45, 0.5);
-    -fx-prompt-text-fill:rgba(255, 255, 255);
-    -fx-text-fill:rgba(255, 255, 255);
-}
+    -fx-background-color: rgba(255, 255, 255, 0.97);
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;}
+
 .btn{
     -fx-border-radius:40px;
     -fx-background-color: rgba(255, 208, 45, 1);
@@ -37,4 +28,12 @@
     -fx-indeterminate-bar-flip:false;
     -fx-indeterminate-bar-animation-tim:5;
     
+}
+
+.txtfield{
+    -fx-background-color:rgba(255, 208, 45, 0.5);
+    -fx-prompt-text-fill:rgba(255, 255, 255);
+    -fx-text-fill:rgba(255, 255, 255);
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
 }
