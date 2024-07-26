@@ -26,6 +26,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import tick.tac.toe.game.network.Client;
+import tick.tac.toe.game.network.requestCreator;
 
 /**
  * FXML Controller class
@@ -34,8 +36,6 @@ import javafx.stage.Stage;
  */
 public class RegisterScreenController implements Initializable {
 
-    
-   
     @FXML
     private TextField namefield;
     @FXML
@@ -51,27 +51,30 @@ public class RegisterScreenController implements Initializable {
     private String username = null;
     private String password = null;
     private String confirmedPassword = null;
-    
-   
+
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        username=namefield.getText();
+        username = namefield.getText();
         password = passwordfield.getText();
         confirmedPassword = confirmfield.getText();
-        if(!(username.equals("") && password.equals("") && confirmedPassword.equals(""))){
-            if(password.equals(confirmedPassword)){
-                
-            }else{
+        if (!(username.equals("") && password.equals("") && confirmedPassword.equals(""))) {
+            if (password.equals(confirmedPassword)) {
+                if (validation(password)) {
+                    Client.sendRequest(requestCreator.register(username, password));
+                } else {
+                    //weak password
+                }
+            } else {
                 //unmatched passwords
             }
-        }else{
+        } else {
             //empty fields
         }
-        if (event.getSource() == register) {
-            changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
-        }
+//        if (event.getSource() == register) {
+//            changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
+//        }
     }
-   
+
     private void showAlert(AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -79,15 +82,14 @@ public class RegisterScreenController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
-     private boolean validation(String name) {
+
+    private boolean validation(String pass) {
         // Check if the name contains both letters and numbers
-        boolean hasLetter = name.matches(".*[a-zA-Z]+.*");
-        boolean hasNumber = name.matches(".*[0-9]+.*");
-        return hasLetter && hasNumber;
+        String complexPasswordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        return pass.matches(complexPasswordPattern);
+
     }
-    
-    
-    
+
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -95,12 +97,10 @@ public class RegisterScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }
