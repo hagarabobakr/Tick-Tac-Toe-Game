@@ -5,8 +5,11 @@
  */
 package tick.tac.toe.game.network;
 
+import java.io.IOException;
+import javafx.application.Platform;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import tick.tac.toe.game.TickTacToeGame;
 
 /**
  *
@@ -86,6 +89,14 @@ public class ResponseHandler {
                 break;
         }
     }
-    
+    private static void handlePlayerNotExist() {
+        Platform.runLater(() -> {
+            try {
+                TickTacToeGame.setRoot("PlayerNotExistView");
+            } catch (IOException ex) {
+                System.out.println("can't set player not exits view");
+            }
+        });
+    }
         
 }
