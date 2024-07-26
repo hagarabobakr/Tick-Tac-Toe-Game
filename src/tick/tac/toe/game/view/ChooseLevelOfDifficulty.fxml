@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="950.0" stylesheets="@../resources/styles/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.ChooseLevelOfDifficultyController">
+<AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="950.0" styleClass="root" stylesheets="@../resources/styles/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.ChooseLevelOfDifficultyController">
     <children>
       <VBox fx:id="vBoxId" alignment="TOP_CENTER" layoutX="125.0" layoutY="50.0" prefHeight="333.0" prefWidth="522.0" styleClass="vBox" stylesheets="@../resources/styles/general.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
          <children>

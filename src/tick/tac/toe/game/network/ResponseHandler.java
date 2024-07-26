@@ -10,45 +10,28 @@ import javafx.application.Platform;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import tick.tac.toe.game.TickTacToeGame;
+import tick.tac.toe.game.controller.LoginScreenController_1;
 
 /**
  *
  * @author Electronica Care
  */
 public class ResponseHandler {
-   public static void handleResponse(String responseString) {
-
+    public static void handleResponse(String responseString) {
         JSONObject requestObject = (JSONObject) JSONValue.parse(responseString);
-         String response = (String) requestObject.get("response");
-        JSONObject data = (JSONObject) requestObject.get("data");
+        String response = (String) requestObject.get("response");
+
         Platform.runLater(() -> {
-            switch (response) {
-                case "loginSuccess":
-                    try {
-                        TickTacToeGame.setRoot("SplashScreen");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case "playerNotExists":
-                    // handlePlayerNotExist();
-                    break;
-                case "wrongPassword":
-                    // handleWrongPassword();
-                    break;
-                default:
-                    break;
-            }
-       });
-    }
-    private static void handlePlayerNotExist() {
-        Platform.runLater(() -> {
-            try {
-                TickTacToeGame.setRoot("PlayerNotExistView");
-            } catch (IOException ex) {
-                System.out.println("can't set player not exits view");
+            if (response.equals("loginSuccess")) { // Use 'response' here, not 'responseString'
+                try {
+                    // Instead of creating a new controller, you should use the one that JavaFX uses with the FXML
+                    LoginScreenController_1 loginController = new LoginScreenController_1();
+                    TickTacToeGame.setRoot("HomePageScreen", loginController);
+                    loginController.onResponse(responseString);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
-        
 }

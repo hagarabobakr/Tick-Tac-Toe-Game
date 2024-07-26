@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,7 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tick.tac.toe.game.network.Client;
-import tick.tac.toe.game.network.requestCreator;
+import tick.tac.toe.game.network.RequestCreator;
+import tick.tac.toe.game.network.ResponseListener;
 
 /**
  *
@@ -34,13 +36,18 @@ public class TickTacToeGame extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+       // Client.openConnection("localhost"); 
+       // String loginRequest = requestCreator.login("sammar", "1234");
+       // Client.sendRequest(loginRequest);
         launch(args);
     }
-    public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    public static void setRoot(String fxml,ResponseListener controller) throws IOException {
+        scene.setRoot(loadFXML(fxml, controller));
     }
-    private static Parent loadFXML(String fxml) throws IOException {
+
+    private static Parent loadFXML(String fxml,ResponseListener controller) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TickTacToeGame.class.getResource("/tick/tac/toe/game/view/" + fxml + ".fxml"));
+        fxmlLoader.setController(controller);
         return fxmlLoader.load();
     }
     
