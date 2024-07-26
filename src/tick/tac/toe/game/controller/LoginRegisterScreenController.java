@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  *
  * @author mystore
  */
-public class Login$registerScreenController implements Initializable {
+public class LoginRegisterScreenController implements Initializable {
 
     @FXML
     private AnchorPane Anchorpn;
