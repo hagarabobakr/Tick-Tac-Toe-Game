@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -23,13 +21,6 @@
                </VBox.margin>
             </Label>
             <HBox prefHeight="60.0" prefWidth="850.0" stylesheets="@../../../../../resources/first.css">
-               <children>
-                  <ImageView fx:id="backbtn" accessibleRole="BUTTON" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#handleImageAction" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/images/back.png" />
-                     </image>
-                  </ImageView>
-               </children>
                <VBox.margin>
                   <Insets left="50.0" />
                </VBox.margin>
