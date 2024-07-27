@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -39,8 +41,6 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
 
     @FXML
     private Label playerxName, playerOname;
-    @FXML
-    private ImageView backbtn;
 
     private boolean isXTurn;
     private boolean isGameOver;
@@ -48,6 +48,8 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
     private int oScore = 0;
     private Button[][] board;
     private String difficultyLevel;
+
+    private Button[] winningButtons;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -83,38 +85,41 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
             xScore += 10;
             playerXscore.setText(String.valueOf(xScore));
             isGameOver = true;
-            moveToShowRewardVideoScreen();
+            drawWinningLine();
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            pause.setOnFinished(e -> moveToShowRewardVideoScreen());
+            pause.play();
         } else if (isBoardFull()) {
             isGameOver = true;
-            moveToShowLoserVideoScreen();
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            pause.setOnFinished(e -> moveToShowLoserVideoScreen());
+            pause.play();
         } else {
             isXTurn = false;
             makeComputerMove();
         }
     }
-    
-    @FXML
-    private void handleImageAction(MouseEvent event) throws IOException {
-        changeScene_2(event, "/tick/tac/toe/game/view/ChooseLevelOfDifficultySinglePlayer.fxml"); // Assuming you want to go to the SplashScreen
-    }
-    
-    private void changeScene_2(Event event, String fxmlFile) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
-        Scene scene = new Scene(parent);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-    
-    
 
     private boolean checkWin() {
         for (int i = 0; i < 3; i++) {
-            if (checkThree(board[i][0], board[i][1], board[i][2]) || checkThree(board[0][i], board[1][i], board[2][i])) {
+            if (checkThree(board[i][0], board[i][1], board[i][2])) {
+                winningButtons = new Button[]{board[i][0], board[i][1], board[i][2]};
+                return true;
+            }
+            if (checkThree(board[0][i], board[1][i], board[2][i])) {
+                winningButtons = new Button[]{board[0][i], board[1][i], board[2][i]};
                 return true;
             }
         }
-        return checkThree(board[0][0], board[1][1], board[2][2]) || checkThree(board[0][2], board[1][1], board[2][0]);
+        if (checkThree(board[0][0], board[1][1], board[2][2])) {
+            winningButtons = new Button[]{board[0][0], board[1][1], board[2][2]};
+            return true;
+        }
+        if (checkThree(board[0][2], board[1][1], board[2][0])) {
+            winningButtons = new Button[]{board[0][2], board[1][1], board[2][0]};
+            return true;
+        }
+        return false;
     }
 
     private boolean checkThree(Button b1, Button b2, Button b3) {
@@ -180,10 +185,15 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
             oScore += 10;
             playerOscore.setText(String.valueOf(oScore));
             isGameOver = true;
-            moveToShowLoserVideoScreen();
+            drawWinningLine();
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            pause.setOnFinished(e -> moveToShowLoserVideoScreen());
+            pause.play();
         } else if (isBoardFull()) {
             isGameOver = true;
-            moveToShowLoserVideoScreen();
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            pause.setOnFinished(e -> moveToShowLoserVideoScreen());
+            pause.play();
         } else {
             isXTurn = true;
         }
@@ -287,6 +297,12 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
         return false;
     }
 
+    private void drawWinningLine() {
+        for (Button button : winningButtons) {
+            button.setStyle("-fx-background-color: yellow;");
+        }
+    }
+
     private void moveToShowRewardVideoScreen() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tick/tac/toe/game/view/ShowRewardVideoScreen.fxml"));
@@ -311,6 +327,17 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    private void handleImageAction(MouseEvent event) throws IOException {
+        changeScene_2(event, "/tick/tac/toe/game/view/ChooseLevelOfDifficultySinglePlayer.fxml"); // Assuming you want to go to the SplashScreen
+    }
+    private void changeScene_2(Event event, String fxmlFile) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
