@@ -46,35 +46,38 @@ public class LoginScreenController_1 implements Initializable, ResponseListener 
                 // Send login request to the server
                 Client.sendRequest(requestCreator.login(username, password));
                 
-                // Create a new thread to wait for 1 minute
-                new Thread(() -> {
                     try {
-                        // Sleep for 1 minute (60000 milliseconds)
                         Thread.sleep(1000);
                         
-                        // Check if response is received and update UI using Platform.runLater
                         Platform.runLater(() -> {
                             if ("loginSuccess".equals(r)) {
                                 try {
                                     System.out.println(r);
-                                    // Change the scene
-                                    changeScene(event, "/tick/tac/toe/game/view/GameBoardScreen.fxml");
+                                    
+                                    changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
                             } else {
-                                // Handle case where login is not successful
+                                
                                 Alert alert = new Alert(Alert.AlertType.ERROR);
                                 alert.setTitle("Login Failed");
                                 alert.setHeaderText(null);
-                                alert.setContentText("Login failed! Please check your credentials and try again.");
+                                    if(r.equals("playerNotExists")){
+                                        alert.setContentText("Login failed! user name not exist");
+                                    }
+                                    else if(r.equals("wrongPassword")) {
+                                         alert.setContentText("Login failed! wrong password");
+                                        
+                                    }
+                               
                                 alert.showAndWait();
                             }
                         });
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }).start();
+               // }).start();
             }
         } else {
             // Change scene if another button is clicked
@@ -100,23 +103,15 @@ public class LoginScreenController_1 implements Initializable, ResponseListener 
 
     @Override
     public void onResponse(String response) {
-        // Update the response variable when a response is received
         if (response.equals("loginSuccess")) {
             r = "loginSuccess";
-        } else {
-            r = "loginFailed";
+        } else if(response.equals("playerNotExists")) {
+            r = "playerNotExists";
         }
-        
-        // Display a success message and navigate to the home screen on successful login
-        Platform.runLater(() -> {
-            if (response.equals("loginSuccess")) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Login Successful");
-                alert.setHeaderText(null);
-                alert.setContentText("You have successfully logged in!");
-                alert.showAndWait();
-            }
-        });
+        else if(response.equals("wrongPassword")){
+            r="wrongPassword";
+        }
+          
     }
 
 }
