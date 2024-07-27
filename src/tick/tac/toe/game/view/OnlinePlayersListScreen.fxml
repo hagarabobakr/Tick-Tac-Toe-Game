@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -27,6 +29,11 @@
                <children>
                   <VBox prefHeight="411.0" prefWidth="471.0">
                      <children>
+                        <ImageView fx:id="backbtn" accessibleRole="BUTTON" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#handleImageAction" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/back.png" />
+                           </image>
+                        </ImageView>
                         <Text fx:id="txtOnlinePlayersId" fill="#ffd02d" strokeType="OUTSIDE" strokeWidth="0.0" text="Online players ">
                            <VBox.margin>
                               <Insets bottom="10.0" />

@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="BASELINE_LEFT" prefHeight="53.0" prefWidth="850.0">
                <children>
-                  <ImageView fx:id="backbtn" fitHeight="52.0" fitWidth="63.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="backbtn" fitHeight="52.0" fitWidth="63.0" onMouseClicked="#handleImageAction" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/images/back.png" />
                      </image>

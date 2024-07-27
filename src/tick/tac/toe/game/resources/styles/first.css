@@ -11,9 +11,13 @@
 
 }
 .vBox{
+
+    -fx-background-color: rgba(255, 251, 245, 0.98);
+
     -fx-background-color: rgba(255, 255, 255, 0.97);
     -fx-background-radius: 30;
     -fx-border-radius: 30;}
+
 
 .btn{
     -fx-border-radius:40px;
@@ -31,6 +35,7 @@
 }
 
 .txtfield{
+    -fx-background-color: rgba(255, 208, 45, 0.41);
     -fx-background-color:rgba(255, 208, 45, 0.5);
     -fx-prompt-text-fill:rgba(255, 255, 255);
     -fx-text-fill:rgba(255, 255, 255);

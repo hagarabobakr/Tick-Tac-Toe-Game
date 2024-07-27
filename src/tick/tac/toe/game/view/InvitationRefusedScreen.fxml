@@ -2,7 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -11,6 +14,18 @@
    <children>
       <VBox fx:id="vBoxId" alignment="TOP_CENTER" layoutX="38.0" layoutY="33.0" prefHeight="333.0" prefWidth="522.0" styleClass="vBox" stylesheets="@../resources/styles/general.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
          <children>
+            <HBox prefHeight="60.0" prefWidth="850.0" stylesheets="@../../../../../resources/first.css">
+               <children>
+                  <ImageView fx:id="backbtn" accessibleRole="BUTTON" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#handleImageAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/images/back.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="50.0" top="50.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
             <Text fx:id="txtId" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The player refused your invitation" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" left="20.0" top="50.0" />
