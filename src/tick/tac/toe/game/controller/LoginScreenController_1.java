@@ -62,7 +62,7 @@ public class LoginScreenController_1 implements Initializable , ResponseListener
             username = namefield.getText();
             password = passwordfield.getText();
             if (!(username.equals("") && password.equals(""))) {
-                // Send login request to the server
+                
                 Client.sendRequest(requestCreator.login(username, password));
                 
                     try {
@@ -96,10 +96,8 @@ public class LoginScreenController_1 implements Initializable , ResponseListener
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-               // }).start();
+               
             }
-        } else {
-            // Change scene if another button is clicked
         }
     }
 

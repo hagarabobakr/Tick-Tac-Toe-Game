@@ -45,7 +45,7 @@
                         <ComboBox fx:id="choosePlayer" prefHeight="37.0" prefWidth="460.0" promptText="choose player" />
                      </children>
                   </VBox>
-                  <Button fx:id="btnContinueId" mnemonicParsing="false" prefHeight="40.0" prefWidth="277.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="continue" textFill="WHITE">
+                  <Button fx:id="btnContinueId" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="277.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="continue" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="50.0" top="300.0" />
                      </HBox.margin>

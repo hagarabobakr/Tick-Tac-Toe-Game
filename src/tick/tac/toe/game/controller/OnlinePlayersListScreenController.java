@@ -5,11 +5,13 @@
  */
 package tick.tac.toe.game.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -59,9 +61,20 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         // TODO
         Client.sendRequest(requestCreator.getOnlinePlayersList());
         ResponseHandler.setListener(this);
-
+        
     }
-
+    @FXML
+    private void handleButtonAction(ActionEvent event) throws IOException {
+        String selectedItem = choosePlayer.getSelectionModel().getSelectedItem();
+        //System.out.println(selectedItem);
+        if(selectedItem != null){
+            
+        }
+        else{
+            System.out.println("empty");
+        }
+        
+    }
     @FXML
     private void handleImageAction(MouseEvent event) {
     }
