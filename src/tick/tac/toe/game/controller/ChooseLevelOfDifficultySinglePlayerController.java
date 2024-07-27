@@ -65,7 +65,7 @@ public class ChooseLevelOfDifficultySinglePlayerController implements Initializa
     
     @FXML
     private void handleImageAction(MouseEvent event) throws IOException {
-        changeScene_2(event, "/tick/tac/toe/game/view/ChooseSymbolSinglePlayerScreen.fxml"); // Assuming you want to go to the SplashScreen
+        changeScene_2(event, "/tick/tac/toe/game/view/ChooseSymbolSinglePlayerScreen.fxml"); 
     }
     
     private void changeScene_2(Event event, String fxmlFile) throws IOException {
