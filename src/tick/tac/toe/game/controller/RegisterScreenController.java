@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -44,6 +46,8 @@ public class RegisterScreenController implements Initializable {
     private PasswordField confirmfield;
     @FXML
     private Button register;
+    @FXML
+    private ImageView backbtn;
 
     /**
      * Initializes the controller class.
@@ -76,6 +80,20 @@ public class RegisterScreenController implements Initializable {
 //            changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
 //        }
     }
+    
+    @FXML
+    private void handleImageAction(MouseEvent event) throws IOException {
+        changeScene_2(event, "/tick/tac/toe/game/view/Login$registerScreen.fxml"); // Assuming you want to go to the SplashScreen
+    }
+    
+    private void changeScene_2(Event event, String fxmlFile) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
 
     private void showAlert(AlertType type, String title, String message) {
         Alert alert = new Alert(type);

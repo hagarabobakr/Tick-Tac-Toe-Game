@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +19,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tick.tac.toe.game.network.Client;
@@ -27,6 +30,7 @@ import tick.tac.toe.game.network.Client;
  *
  * @author sammar alaa
  */
+
 public class EnterIpScreenController implements Initializable {
 
     @FXML
@@ -35,6 +39,8 @@ public class EnterIpScreenController implements Initializable {
     private TextField txtIpAddress;
     @FXML
     private Button btnConnect;
+    @FXML
+    private ImageView backbtn;
 
     /**
      * Initializes the controller class.
@@ -61,6 +67,20 @@ public class EnterIpScreenController implements Initializable {
             
         }
     }
+    
+    @FXML
+    private void handleImageAction(MouseEvent event) throws IOException {
+        changeScene_2(event, "/tick/tac/toe/game/view/ChooseModeScreen.fxml"); // Assuming you want to go to the SplashScreen
+    }
+    
+    private void changeScene_2(Event event, String fxmlFile) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
 
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,6 +46,7 @@ public class LoginScreenController_1 implements Initializable, ResponseListener 
             if (!(username.equals("") && password.equals(""))) {
                 // Send login request to the server
                 Client.sendRequest(requestCreator.login(username, password));
+
                 
                     try {
                         Thread.sleep(1000);
@@ -83,6 +85,7 @@ public class LoginScreenController_1 implements Initializable, ResponseListener 
             // Change scene if another button is clicked
         }
     }
+
 
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
