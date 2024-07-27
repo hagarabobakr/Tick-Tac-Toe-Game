@@ -42,7 +42,7 @@
                               <Font name="Jokerman" size="41.0" />
                            </font>
                         </Text>
-                        <TextArea prefHeight="336.0" prefWidth="280.0" styleClass="listview" stylesheets="@../resources/styles/OnlinePlayersListScreen.css" text="player One&#10;&#10;player Two&#10;&#10;player Three">
+                        <TextArea editable="false" prefHeight="336.0" prefWidth="280.0" styleClass="listview" stylesheets="@../resources/styles/OnlinePlayersListScreen.css" text="player One&#10;&#10;player Two&#10;&#10;player Three">
                            <font>
                               <Font name="Jokerman" size="24.0" />
                            </font>

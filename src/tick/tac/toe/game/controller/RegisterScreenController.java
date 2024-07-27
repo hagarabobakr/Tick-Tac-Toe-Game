@@ -67,9 +67,11 @@ public class RegisterScreenController implements Initializable {
                     Client.sendRequest(requestCreator.register(username, password));
                 } else {
                     //weak password
+                   showAlert( Alert.AlertType.ERROR,"Weak Password","Password must be at least 8 characters long, contain at least one digit, one lowercase letter, one uppercase letter, and one special character.");
                 }
             } else {
                 //unmatched passwords
+                showAlert( Alert.AlertType.ERROR,"Weak Password","");
             }
         } else {
             //empty fields

@@ -37,6 +37,7 @@ public class HomePageScreenController implements Initializable{
     
     
     
+    
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
@@ -73,7 +74,7 @@ public class HomePageScreenController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
