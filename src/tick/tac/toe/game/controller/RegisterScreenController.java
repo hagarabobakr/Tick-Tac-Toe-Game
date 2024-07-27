@@ -8,6 +8,9 @@ package tick.tac.toe.game.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -29,6 +32,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tick.tac.toe.game.network.Client;
+import tick.tac.toe.game.network.ResponseHandler;
+import tick.tac.toe.game.network.ResponseListener;
 import tick.tac.toe.game.network.requestCreator;
 
 /**
@@ -36,7 +41,7 @@ import tick.tac.toe.game.network.requestCreator;
  *
  * @author mystore
  */
-public class RegisterScreenController implements Initializable {
+public class RegisterScreenController implements Initializable, ResponseListener {
 
     @FXML
     private TextField namefield;
@@ -55,6 +60,7 @@ public class RegisterScreenController implements Initializable {
     private String username = null;
     private String password = null;
     private String confirmedPassword = null;
+    private String r;
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
@@ -65,25 +71,44 @@ public class RegisterScreenController implements Initializable {
             if (password.equals(confirmedPassword)) {
                 if (validation(password)) {
                     Client.sendRequest(requestCreator.register(username, password));
+                    try {
+                        Thread.sleep(1000);
+
+                        Platform.runLater(() -> {
+
+                            if (r.equals("successfulReqisration")) {
+                                try {
+                                    changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
+                                } catch (IOException ex) {
+                                    ex.printStackTrace();
+                                }
+
+                            } else if (r.equals("playerExist")) {
+                                showAlert(Alert.AlertType.ERROR, "Player exist","player exist! please log in..");
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     //weak password
+                    showAlert(Alert.AlertType.ERROR, "Weak Password", "Password must be at least 8 characters long, contain at least one digit, one lowercase letter, one uppercase letter, and one special character.");
                 }
             } else {
                 //unmatched passwords
+                showAlert(Alert.AlertType.ERROR, "unmatched passwords", "unmatched passwords...");
             }
         } else {
             //empty fields
+            showAlert(Alert.AlertType.ERROR, "empty fields", "Please, fill the fields first..");
         }
-//        if (event.getSource() == register) {
-//            changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
-//        }
     }
-    
+
     @FXML
     private void handleImageAction(MouseEvent event) throws IOException {
         changeScene_2(event, "/tick/tac/toe/game/view/Login$registerScreen.fxml"); // Assuming you want to go to the SplashScreen
     }
-    
+
     private void changeScene_2(Event event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -91,7 +116,6 @@ public class RegisterScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    
 
     private void showAlert(AlertType type, String title, String message) {
         Alert alert = new Alert(type);
@@ -119,6 +143,16 @@ public class RegisterScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        ResponseHandler.setListener(this);
     }
 
+    @Override
+    public void onResponse(String response) {
+        if (response.equals("successfulReqisration")) {
+            r = "successfulReqisration";
+        } else if (response.equals("playerExist")) {
+            r = "playerExist";
+        }
+
+    }
 }

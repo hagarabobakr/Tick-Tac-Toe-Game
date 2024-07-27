@@ -60,8 +60,6 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         Client.sendRequest(requestCreator.getOnlinePlayersList());
         ResponseHandler.setListener(this);
 
-//            onlinePlayersListView.getItems().clear();
-//        onlinePlayersListView.getItems().addAll(players);
     }
 
     @FXML
