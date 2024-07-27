@@ -7,48 +7,43 @@ package tick.tac.toe.game.network;
 
 import java.io.IOException;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import tick.tac.toe.game.TickTacToeGame;
+import tick.tac.toe.game.controller.LoginScreenController_1;
 
 /**
  *
  * @author Electronica Care
  */
 public class ResponseHandler {
-   public static void handleResponse(String responseString) {
+     public static String response;
+     private static ResponseListener listener;
 
-        JSONObject requestObject = (JSONObject) JSONValue.parse(responseString);
-         String response = (String) requestObject.get("response");
-        JSONObject data = (JSONObject) requestObject.get("data");
-        Platform.runLater(() -> {
-            switch (response) {
-                case "loginSuccess":
-                    try {
-                        TickTacToeGame.setRoot("SplashScreen");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case "playerNotExists":
-                    // handlePlayerNotExist();
-                    break;
-                case "wrongPassword":
-                    // handleWrongPassword();
-                    break;
-                default:
-                    break;
-            }
-       });
+    public static void setListener(ResponseListener responseListener) {
+        listener = responseListener;
     }
-    private static void handlePlayerNotExist() {
+    public static void handleResponse(String responseString) {
+        JSONObject requestObject = (JSONObject) JSONValue.parse(responseString);
+         response = (String) requestObject.get("response");
+
+         switch(response){
+             case "loginSuccess":
+                 //LoginScreenController_1.r="/tick/tac/toe/game/view/EnterIpScreen.fxml";
+                 break;
+         }
+
         Platform.runLater(() -> {
-            try {
-                TickTacToeGame.setRoot("PlayerNotExistView");
-            } catch (IOException ex) {
-                System.out.println("can't set player not exits view");
+            if (listener != null) {
+                
+                listener.onResponse(response);
             }
         });
     }
-        
 }
