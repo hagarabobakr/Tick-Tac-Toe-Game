@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  *
  * @author ayaah
  */
-public class ShowLoserVideoScreenController implements Initializable{
+public class ShowLoserVideoScreenController implements Initializable {
 
     @FXML
     private AnchorPane anchorId;
@@ -61,26 +61,16 @@ public class ShowLoserVideoScreenController implements Initializable{
             mediaPlayer = new MediaPlayer(media);
             mediaView.setMediaPlayer(mediaPlayer);
 
-            // Initially disable the continue button
-            btnContinue.setDisable(true);
-            System.out.println("Continue button initially disabled.");
-
             // Play the video
             mediaPlayer.play();
 
             // Add listener to detect when video ends
             mediaPlayer.setOnEndOfMedia(() -> {
-                System.out.println("Video ended. Enabling continue button.");
                 btnContinue.setDisable(false); // Enable the continue button when video ends
             });
 
-            // Add listener for errors
-            mediaPlayer.setOnError(() -> {
-                System.out.println("Error occurred: " + mediaPlayer.getError().getMessage());
-                // Enable the button if an error occurs
-                btnContinue.setDisable(false);
-            });
-
+            // Initially disable the continue button
+            //  btnContinue.setDisable(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -88,23 +78,32 @@ public class ShowLoserVideoScreenController implements Initializable{
 
     @FXML
     private void handleContinueAction() {
-        System.out.println("Continue button clicked.");
+        System.out.println("Continue button clicked");
+
+        // Stop the video
         if (mediaPlayer != null) {
             mediaPlayer.stop();
+            System.out.println("Video stopped");
+        } else {
+            System.out.println("MediaPlayer is null");
         }
-        navigateToHomePage();
-    }
 
-    private void navigateToHomePage() {
+        // Resume the background music
+        SoundManager.resumeBackgroundMusic();
+        System.out.println("Background music resumed");
+
+        // Navigate to the next screen
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tick/tac/toe/game/view/HomePageScreen.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) anchorId.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Parent parent = FXMLLoader.load(getClass().getResource("/tick/tac/toe/game/view/ChoosePlayerTypeScreen.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = (Stage) btnContinue.getScene().getWindow();
+            stage.setScene(scene);
             stage.show();
+            System.out.println("Navigated to ChooseSymbolScreen.fxml");
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Failed to load ChooseSymbolScreen.fxml");
         }
     }
-    
+
 }

@@ -61,28 +61,39 @@ public class ShowRewardVideoScreenController implements Initializable {
             });
 
             // Initially disable the continue button
-            btnContinue.setDisable(true);
+          //  btnContinue.setDisable(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @FXML
+     @FXML
     private void handleContinueAction() {
-        // Stop the video and close the current stage
-        mediaPlayer.stop();
-        navigateToHomePage();
-    }
+        System.out.println("Continue button clicked");
+        
+        // Stop the video
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            System.out.println("Video stopped");
+        } else {
+            System.out.println("MediaPlayer is null");
+        }
 
-    private void navigateToHomePage() {
+        // Resume the background music
+        SoundManager.resumeBackgroundMusic();
+        System.out.println("Background music resumed");
+
+        // Navigate to the next screen
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tick/tac/toe/game/view/HomePageScreen.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) anchorId.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Parent parent = FXMLLoader.load(getClass().getResource("/tick/tac/toe/game/view/ChoosePlayerTypeScreen.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = (Stage) btnContinue.getScene().getWindow();
+            stage.setScene(scene);
             stage.show();
+            System.out.println("Navigated to ChooseSymbolScreen.fxml");
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Failed to load ChooseSymbolScreen.fxml");
         }
     }
 }

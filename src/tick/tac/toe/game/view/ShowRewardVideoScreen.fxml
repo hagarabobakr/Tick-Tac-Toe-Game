@@ -25,7 +25,7 @@
                   <Insets />
                </VBox.margin>
             </MediaView>
-            <Button fx:id="btnContinue" mnemonicParsing="false" onAction="#handleContinueAction" prefHeight="51.0" prefWidth="354.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Continue" textFill="WHITE">
+            <Button fx:id="btnContinue" mnemonicParsing="false" onAction="#handleContinueAction" prefHeight="51.0" prefWidth="354.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Replay" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
