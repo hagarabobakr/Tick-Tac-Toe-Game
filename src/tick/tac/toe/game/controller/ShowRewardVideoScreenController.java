@@ -61,7 +61,7 @@ public class ShowRewardVideoScreenController implements Initializable {
             });
 
             // Initially disable the continue button
-            btnContinue.setDisable(true);
+          //  btnContinue.setDisable(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -85,7 +85,7 @@ public class ShowRewardVideoScreenController implements Initializable {
 
         // Navigate to the next screen
         try {
-            Parent parent = FXMLLoader.load(getClass().getResource("/tick/tac/toe/game/view/ChooseSymbolScreen.fxml"));
+            Parent parent = FXMLLoader.load(getClass().getResource("/tick/tac/toe/game/view/ChoosePlayerTypeScreen.fxml"));
             Scene scene = new Scene(parent);
             Stage stage = (Stage) btnContinue.getScene().getWindow();
             stage.setScene(scene);

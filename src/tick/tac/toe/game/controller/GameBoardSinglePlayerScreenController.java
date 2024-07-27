@@ -168,13 +168,13 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
         if (isGameOver) {
             return;
         }
-        
+
         switch (difficultyLevel) {
             case "Easy":
                 makeRandomMove();
                 break;
             case "Medium":
-                makeMediumMove();
+                makeBestMove();
                 break;
             case "Hard":
                 makeBestMove();
@@ -232,6 +232,7 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
                     board[i][j].setText("O");
                     int score = minimax(board, 0, false);
                     board[i][j].setText("");
+                    board[i][j].setStyle("");
                     if (score > bestScore) {
                         bestScore = score;
                         bestMove[0] = i;
@@ -283,19 +284,20 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
     }
 
     private boolean tryToWinOrBlock(String symbol) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (board[i][j].getText().isEmpty()) {
-                    board[i][j].setText(symbol);
-                    if (checkWin()) {
-                        return true;
-                    }
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (board[i][j].getText().isEmpty()) {
+                board[i][j].setText(symbol);
+                if (checkWin()) {
                     board[i][j].setText("");
+                    return true;
                 }
+                board[i][j].setText("");
             }
         }
-        return false;
     }
+    return false;
+}
 
     private void drawWinningLine() {
         for (Button button : winningButtons) {
@@ -311,6 +313,8 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            // Stop the background music
+            SoundManager.stopBackgroundMusic();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -324,14 +328,18 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            // Stop the background music
+            SoundManager.stopBackgroundMusic();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void handleImageAction(MouseEvent event) throws IOException {
         changeScene_2(event, "/tick/tac/toe/game/view/ChooseLevelOfDifficultySinglePlayer.fxml"); // Assuming you want to go to the SplashScreen
     }
+
     private void changeScene_2(Event event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -341,4 +349,3 @@ public class GameBoardSinglePlayerScreenController implements Initializable {
     }
 
 }
-

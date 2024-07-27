@@ -8,7 +8,7 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="950.0" styleClass="root" stylesheets="@../resources/styles/general.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="tick.tac.toe.game.controller.ShowLoserVideoScreenController">
+<AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="950.0" styleClass="root" stylesheets="@../resources/styles/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tick.tac.toe.game.controller.ShowLoserVideoScreenController">
     <children>
       <VBox fx:id="vBoxId" alignment="TOP_CENTER" layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="500.0" styleClass="vBox" stylesheets="@../resources/styles/general.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
          <children>
@@ -25,7 +25,7 @@
                   <Insets />
                </VBox.margin>
             </MediaView>
-            <Button fx:id="btnContinue" mnemonicParsing="false" onAction="#handleContinueAction" prefHeight="51.0" prefWidth="354.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Continue" textFill="WHITE">
+            <Button fx:id="btnContinue" mnemonicParsing="false" onAction="#handleContinueAction" prefHeight="51.0" prefWidth="354.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Replay" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
