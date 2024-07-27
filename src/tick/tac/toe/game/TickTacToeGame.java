@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tick.tac.toe.game.controller.SoundManager;
 import tick.tac.toe.game.network.Client;
 import tick.tac.toe.game.network.requestCreator;
 
@@ -28,6 +29,14 @@ public class TickTacToeGame extends Application {
         
         stage.setScene(scene);
         stage.show();
+     // Play background music
+        SoundManager.playBackgroundMusic();
+    }
+    
+    @Override
+    public void stop() {
+        // Stop background music when the application is closed
+        SoundManager.stopBackgroundMusic();
     }
 
     /**

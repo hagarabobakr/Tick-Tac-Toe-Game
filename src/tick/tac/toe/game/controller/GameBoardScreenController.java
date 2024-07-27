@@ -46,6 +46,8 @@ public class GameBoardScreenController implements Initializable {
     private int xScore = 0;
     private int oScore = 0;
     private Button[][] board;
+    
+    private Button[] winningButtons;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -87,11 +89,14 @@ public class GameBoardScreenController implements Initializable {
             if (isXTurn) {
                 xScore += 10;
                 playerXscore.setText(String.valueOf(xScore));
+                 drawWinningLine();
             } else {
                 oScore += 10;
                 playerOscore.setText(String.valueOf(oScore));
+                 drawWinningLine();
             }
             isGameOver = true;  // Set the game over flag
+            
             waitForThreeSecondsAndMoveToShowRewardVideoScreen();  // Wait for three seconds then move to reward video screen
         } else if (isBoardFull()) {
             isGameOver = true;  // Set the game over flag if board is full
@@ -119,15 +124,20 @@ public class GameBoardScreenController implements Initializable {
         // Check rows and columns
         for (int i = 0; i < 3; i++) {
             if (checkThree(board[i][0], board[i][1], board[i][2])) {
+                 winningButtons = new Button[]{board[i][0], board[i][1], board[i][2]};
+              
                 return true;
             } else if (checkThree(board[0][i], board[1][i], board[2][i])) {
+                winningButtons = new Button[]{board[0][i], board[1][i], board[2][i]};
                 return true;
             }
         }
         // Check diagonals
         if (checkThree(board[0][0], board[1][1], board[2][2])) {
+            winningButtons = new Button[]{board[0][0], board[1][1], board[2][2]};
             return true;
         } else if (checkThree(board[0][2], board[1][1], board[2][0])) {
+            winningButtons = new Button[]{board[0][2], board[1][1], board[2][0]};
             return true;
         }
         return false;
@@ -167,14 +177,24 @@ public class GameBoardScreenController implements Initializable {
         isXTurn = player1Symbol.equals("X");
     }
 
+    private void drawWinningLine() {
+        for (Button button : winningButtons) {
+            button.setStyle("-fx-background-color: yellow;");
+        }
+    }
+    
     private void moveToShowRewardVideoScreen() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tick/tac/toe/game/view/ShowRewardVideoScreen1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tick/tac/toe/game/view/ShowRewardVideoScreen.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) Btn11.getScene().getWindow();  // Get the current stage
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            
+            // Stop the background music
+            SoundManager.stopBackgroundMusic();
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
