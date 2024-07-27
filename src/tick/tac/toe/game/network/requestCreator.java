@@ -32,4 +32,9 @@ public class requestCreator {
         request.put("data", userData);
         return request.toString();
     }
+    public static String getOnlinePlayersList(){
+        JSONObject request = new JSONObject();
+        request.put("request", "getOnlinePlayersList");
+        return request.toString();
+    }
 }

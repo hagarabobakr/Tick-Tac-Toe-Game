@@ -32,16 +32,15 @@ public class ResponseHandler {
     public static void handleResponse(String responseString) {
         JSONObject requestObject = (JSONObject) JSONValue.parse(responseString);
          response = (String) requestObject.get("response");
-
-         switch(response){
-             case "loginSuccess":
-                 //LoginScreenController_1.r="/tick/tac/toe/game/view/EnterIpScreen.fxml";
-                 break;
+         if(response.equals("onlinePlayersList")){
+             JSONObject responseData = new JSONObject();
+             responseData.put("response", "onlinePlayersList");
+             responseData.put("count",requestObject.get("count"));
+             responseData.put("data",requestObject.get("data"));
+             response = responseData.toString();
          }
-
         Platform.runLater(() -> {
             if (listener != null) {
-                
                 listener.onResponse(response);
             }
         });
