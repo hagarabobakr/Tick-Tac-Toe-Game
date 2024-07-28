@@ -46,7 +46,7 @@
                   <Font name="Jokerman" size="37.0" />
                </font>
             </CheckBox>
-            <Button fx:id="Start" mnemonicParsing="false" prefHeight="71.0" prefWidth="421.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Start" textFill="WHITE">
+            <Button fx:id="Start" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="71.0" prefWidth="421.0" styleClass="btn" stylesheets="@../resources/styles/yellwobtn.css" text="Start" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="50.0" top="80.0" />
                </VBox.margin>

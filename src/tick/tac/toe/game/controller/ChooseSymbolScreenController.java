@@ -37,7 +37,7 @@ public class ChooseSymbolScreenController implements Initializable {
 
     @FXML
     private Label player2;
-    
+
     @FXML
     private ImageView backbtn;
 
@@ -58,27 +58,12 @@ public class ChooseSymbolScreenController implements Initializable {
             }
         });
     }
-    
-    
-    @FXML
-    private void handleImageAction(MouseEvent event) throws IOException {
-        changeScene_2(event, "/tick/tac/toe/game/view/ChoosePlayerTypeScreen.fxml"); // Assuming you want to go to the SplashScreen
-    }
-    
-    private void changeScene_2(Event event, String fxmlFile) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
-        Scene scene = new Scene(parent);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
 
     @FXML
     private void handleSetChoice() {
         player1Symbol = Player1Choose.getText().trim().toUpperCase();
 
         if (player1Symbol.isEmpty()) {
-            // Do not automatically set Player 2's symbol if Player 1's input is empty
             player2Symbol = "";
             Player2Choose.setText("");
             return;
@@ -89,7 +74,6 @@ public class ChooseSymbolScreenController implements Initializable {
             return;
         }
 
-        // Set Player 2's choice
         player2Symbol = player1Symbol.equals("X") ? "O" : "X";
         Player2Choose.setText(player2Symbol);
     }
@@ -99,7 +83,6 @@ public class ChooseSymbolScreenController implements Initializable {
         player2Symbol = Player2Choose.getText().trim().toUpperCase();
 
         if (player2Symbol.isEmpty()) {
-            // Do not automatically update Player 1's symbol if Player 2's input is empty
             player1Symbol = "";
             Player1Choose.setText("");
             return;
@@ -110,18 +93,8 @@ public class ChooseSymbolScreenController implements Initializable {
             return;
         }
 
-        // Automatically update Player 1's choice based on Player 2's input
         player1Symbol = player2Symbol.equals("X") ? "O" : "X";
         Player1Choose.setText(player1Symbol);
-    }
-
-    @FXML
-    private void showAlert(AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     @FXML
@@ -136,16 +109,39 @@ public class ChooseSymbolScreenController implements Initializable {
             return;
         }
 
-        changeScene(event, "/tick/tac/toe/game/view/GameBoardScreen.fxml");
+        changeScene(event, "/tick/tac/toe/game/view/DisplayRecordedFilesScreen.fxml");
     }
 
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent parent = loader.load();
 
-        GameBoardScreenController controller = loader.getController();
+        // Get the HomePageOfflineScreenController and pass the symbols
+        DisplayRecordedFilesControllers controller = loader.getController();
         controller.setPlayerSymbols(player1Symbol, player2Symbol);
 
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void showAlert(AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void handleImageAction(MouseEvent event) throws IOException {
+        changeScene_2(event, "/tick/tac/toe/game/view/ChoosePlayerTypeScreen.fxml");
+    }
+
+    private void changeScene_2(Event event, String fxmlFile) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
