@@ -37,4 +37,10 @@ public class requestCreator {
         request.put("request", "getOnlinePlayersList");
         return request.toString();
     }
+    public static String sendInvitation(String name){
+        JSONObject request = new JSONObject();
+        request.put("request", "sendInvitation");
+        request.put("name", name);
+        return request.toString();
+    }
 }
