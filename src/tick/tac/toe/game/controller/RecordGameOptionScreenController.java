@@ -48,7 +48,7 @@ public class RecordGameOptionScreenController implements Initializable {
                 try {
                     // Generate a filename based on current date and time
                     String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
-                    filePath = "Tick-Tac-Toe-Game/tick/tac/toe/game/GameRecord/GameRecord_" + timestamp;
+                    filePath = "C:/Users/mystore/Documents/GameRecord/GameRecord_" + timestamp;
 
                     Path path = Paths.get(filePath);
                     // Ensure the directory exists

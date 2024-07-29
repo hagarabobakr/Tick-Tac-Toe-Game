@@ -47,7 +47,7 @@ public class DisplayRecordedFilesControllers implements Initializable {
     @FXML
     private ComboBox<String> recordedGamesComboBoxId;
 
-    private static final String RECORDINGS_DIRECTORY = "Tick-Tac-Toe-Game/tick/tac/toe/game/GameRecord";
+    private static final String RECORDINGS_DIRECTORY = "C:/Users/mystore/Documents/GameRecord";
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
