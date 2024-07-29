@@ -39,7 +39,7 @@ import tick.tac.toe.game.network.requestCreator;
  *
  * @author mystore
  */
-public class LoginScreenController_1 implements Initializable , ResponseListener{
+public class LoginScreenController_1 implements Initializable, ResponseListener {
 
     @FXML
     private PasswordField passwordfield;
@@ -56,47 +56,48 @@ public class LoginScreenController_1 implements Initializable , ResponseListener
     String username = null;
     String password = null;
     private static volatile String r;
+
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         if (event.getSource() == loginbtn) {
             username = namefield.getText();
             password = passwordfield.getText();
             if (!(username.equals("") && password.equals(""))) {
-                
+
                 Client.sendRequest(requestCreator.login(username, password));
-                
-                    try {
-                        Thread.sleep(1000);
-                        
-                        Platform.runLater(() -> {
-                            if ("loginSuccess".equals(r)) {
-                                try {
-                                    System.out.println(r);
-                                    
-                                    changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            } else {
-                                
-                                Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("Login Failed");
-                                alert.setHeaderText(null);
-                                    if(r.equals("playerNotExists")){
-                                        alert.setContentText("Login failed! user name not exist");
-                                    }
-                                    else if(r.equals("wrongPassword")) {
-                                         alert.setContentText("Login failed! wrong password");
-                                        
-                                    }
-                               
-                                alert.showAndWait();
+                Client.userName = username;
+
+                try {
+                    Thread.sleep(1000);
+
+                    Platform.runLater(() -> {
+                        if ("loginSuccess".equals(r)) {
+                            try {
+                                System.out.println(r);
+
+                                changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
-                        });
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-               
+                        } else {
+
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Login Failed");
+                            alert.setHeaderText(null);
+                            if (r.equals("playerNotExists")) {
+                                alert.setContentText("Login failed! user name not exist");
+                            } else if (r.equals("wrongPassword")) {
+                                alert.setContentText("Login failed! wrong password");
+
+                            }
+
+                            alert.showAndWait();
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         }
     }
@@ -126,16 +127,19 @@ public class LoginScreenController_1 implements Initializable , ResponseListener
     public void initialize(URL location, ResourceBundle resources) {
         ResponseHandler.setListener(this);
     }
+
     @Override
     public void onResponse(String response) {
         if (response.equals("loginSuccess")) {
             r = "loginSuccess";
-        } else if(response.equals("playerNotExists")) {
+            //Client.userName
+        } else if (response.equals("playerNotExists")) {
             r = "playerNotExists";
+        } else if (response.equals("wrongPassword")) {
+            r = "wrongPassword";
         }
-        else if(response.equals("wrongPassword")){
-            r="wrongPassword";
-        }
-          
+
     }
 }
+
+

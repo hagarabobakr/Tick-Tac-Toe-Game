@@ -75,6 +75,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         String selectedItem = choosePlayer.getSelectionModel().getSelectedItem();
+
         if (selectedItem != null) {
             try {
                 //            // Prepare the invitation data
@@ -95,6 +96,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
 
     }
 
+
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -109,13 +111,6 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
 
     @Override
     public void onResponse(String response) {
-        if (response.equals("loginSuccess")) {
-            r = "loginSuccess";
-        } else if (response.equals("playerNotExists")) {
-            r = "playerNotExists";
-        } else if (response.equals("wrongPassword")) {
-            r = "wrongPassword";
-        }
 
     }
 
