@@ -74,7 +74,7 @@ public class LoginScreenController_1 implements Initializable, ResponseListener 
                         if ("loginSuccess".equals(r)) {
                             try {
                                 System.out.println(r);
-
+                                
                                 changeScene(event, "/tick/tac/toe/game/view/OnlinePlayersListScreen.fxml");
                             } catch (IOException e) {
                                 e.printStackTrace();

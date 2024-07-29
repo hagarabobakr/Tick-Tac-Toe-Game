@@ -17,6 +17,7 @@ public class requestCreator {
         JSONObject userData = new JSONObject();
         userData.put("username", userName);
         userData.put("password", password);
+        Client.userName=userName;
         JSONObject request = new JSONObject();
         request.put("request", "login");
         request.put("data", userData);
@@ -27,6 +28,7 @@ public class requestCreator {
         JSONObject userData = new JSONObject();
         userData.put("username", userName);
         userData.put("password", password);
+        Client.userName=userName;
         JSONObject request = new JSONObject();
         request.put("request", "register");
         request.put("data", userData);
