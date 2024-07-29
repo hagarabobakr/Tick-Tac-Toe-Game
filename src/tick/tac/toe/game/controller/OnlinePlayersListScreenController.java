@@ -64,7 +64,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
     public long size;
     public ArrayList<String> players = new ArrayList<>();
     private static volatile String r;
-    public ActionEvent event;
+  
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -97,7 +97,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         }
 
     }
-
+    
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -105,6 +105,13 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         stage.setScene(scene);
         stage.show();
     }
+    private void changeScene(String fxmlFile) throws IOException {
+    Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+    Scene scene = new Scene(parent);
+    Stage stage = (Stage) Box.getScene().getWindow(); // استخدم عنصر موجود للحصول على المرحلة الحالية
+    stage.setScene(scene);
+    stage.show();
+}
 
     @FXML
     private void handleImageAction(MouseEvent event) {
@@ -128,11 +135,11 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
             ObservableList<String> options = FXCollections.observableArrayList(players);
             choosePlayer.setItems(options);
 
-        } else if (responseObject.get("response").equals("invitationReceived")) {
+        } else if (responseObject.get("response").equals("invitationSent")) {
             Platform.runLater(() -> {
                 try {
-                    changeScene(event, "/tick/tac/toe/game/view/InvitationScreen.fxml");
-                } catch (IOException ex) {
+                    changeScene("/tick/tac/toe/game/view/InvitationScreen.fxml");
+                } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             });
