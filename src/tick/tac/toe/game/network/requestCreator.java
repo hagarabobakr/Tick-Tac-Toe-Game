@@ -32,6 +32,13 @@ public class requestCreator {
         request.put("data", userData);
         return request.toString();
     }
+    public static String logout(){
+        JSONObject userData = new JSONObject();
+        String userName = Client.userName;
+        userData.put("request","logout");
+        userData.put("username", userName);
+        return userData.toString();
+    }
     public static String getOnlinePlayersList(){
         JSONObject request = new JSONObject();
         request.put("request", "getOnlinePlayersList");
@@ -43,4 +50,5 @@ public class requestCreator {
         request.put("name", name);
         return request.toString();
     }
+    
 }

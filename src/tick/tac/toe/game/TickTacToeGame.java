@@ -28,6 +28,12 @@ public class TickTacToeGame extends Application {
          scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setOnCloseRequest(e-> {
+//            if (Client.player != null) {
+//                Client.sendRequest(logout());
+//            }
+            System.exit(0);
+        });
         stage.show();
      // Play background music
         SoundManager.playBackgroundMusic();

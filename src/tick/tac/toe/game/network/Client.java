@@ -18,48 +18,70 @@ import java.net.Socket;
 public class Client {
 
     public static Socket mySocket;
-    public static DataInputStream inputStream ;
-    public static PrintStream printstream ;
+    public static DataInputStream inputStream;
+    public static PrintStream printStream;
     public static String response;
-    
-     public static void openConnection(String ip) {
-        
+    public static String userName;
+
+    public static void openConnection(String ip) {
+
         try {
             mySocket = new Socket(ip, 5005);
             inputStream = new DataInputStream(mySocket.getInputStream());
-            printstream = new PrintStream(mySocket.getOutputStream());
+            printStream = new PrintStream(mySocket.getOutputStream());
             System.out.println("connection opened");
-            
+
             AcceptResponses();
         } catch (IOException e) {
-            //closeEveryThing(); function();
+            closeConnection();
+            e.printStackTrace();
         }
     }
-     
-    private static void AcceptResponses(){
+
+    private static void AcceptResponses() {
         //thread while(true)
         new Thread(() -> {
             try {
                 //String response;
                 while (mySocket.isConnected() && (response = inputStream.readLine()) != null) {
                     //adding response handler
-                   ResponseHandler.handleResponse(response);
-                   System.out.println(response);
+                    ResponseHandler.handleResponse(response);
+                    System.out.println(response);
                 }
             } catch (IOException ex) {
                 System.out.println("connection lost");
-                //closeEveryThing();
+                closeConnection();
+                ex.printStackTrace();
             } catch (Exception e) {
+                closeConnection();
                 e.printStackTrace();
                 System.out.println("connection lost problem in accept response");
-                //closeEveryThing();
+
             }
         }).start();
     }
-    public static void sendRequest(String request){
-        if(request == null)
+
+    public static void sendRequest(String request) {
+        if (request == null) {
             return;
-        printstream.println(request);
-    
+        }
+        printStream.println(request);
+
+    }
+
+    public static void closeConnection() {
+        try {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            if (printStream != null) {
+                printStream.close();
+            }
+            if (mySocket != null) {
+                mySocket.close();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
