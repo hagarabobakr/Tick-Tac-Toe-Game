@@ -9,11 +9,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -22,6 +28,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -55,6 +62,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
     public JSONObject data;
     public long size;
     public ArrayList<String> players = new ArrayList<>();
+    private static volatile String r;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -67,13 +75,34 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         String selectedItem = choosePlayer.getSelectionModel().getSelectedItem();
-        //System.out.println(selectedItem);
+
         if (selectedItem != null) {
-            System.out.print(selectedItem);
+            try {
+                //            // Prepare the invitation data
+//            JSONObject invitationData = new JSONObject();
+//            invitationData.put("type", "invitation");
+//            invitationData.put("sender", Client.userName);
+//            invitationData.put("receiver", selectedItem);
+                Client.sendRequest(requestCreator.sendInvitation(Client.userName));
+                Thread.sleep(1000);
+                changeScene(event, "/tick/tac/toe/game/view/WaitingForOthersScreen.fxml");
+            } catch (InterruptedException ex) {
+                Logger.getLogger(OnlinePlayersListScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         } else {
-            System.out.println("empty");
+            System.out.println("wrong");
         }
 
+    }
+
+
+    private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -82,22 +111,10 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
 
     @Override
     public void onResponse(String response) {
-        JSONObject responseObject = (JSONObject) JSONValue.parse(response);
-        if (responseObject.get("response").equals("onlinePlayersList")) {
-            data = (JSONObject) responseObject.get("data");
-            size = (long) responseObject.get("count");
 
-            for (int i = 0; i < size; i++) {
-                String player = (String) data.get(i + "");
-                if (player != Client.userName) {
-                    players.add(player);
-                }
-            }
-            //JSONArray playersArray = (JSONArray) responseObject.get("data");
-            ObservableList<String> options = FXCollections.observableArrayList(players);
-            choosePlayer.setItems(options);
+    }
 
-        }
-
+    private void navigateToWaitingScreen() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
