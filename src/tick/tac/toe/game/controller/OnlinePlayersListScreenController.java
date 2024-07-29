@@ -61,20 +61,21 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         // TODO
         Client.sendRequest(requestCreator.getOnlinePlayersList());
         ResponseHandler.setListener(this);
-        
+
     }
+
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         String selectedItem = choosePlayer.getSelectionModel().getSelectedItem();
         //System.out.println(selectedItem);
-        if(selectedItem != null){
-            
-        }
-        else{
+        if (selectedItem != null) {
+            System.out.print(selectedItem);
+        } else {
             System.out.println("empty");
         }
-        
+
     }
+
     @FXML
     private void handleImageAction(MouseEvent event) {
     }
@@ -87,7 +88,10 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
             size = (long) responseObject.get("count");
 
             for (int i = 0; i < size; i++) {
-                players.add((String) data.get(i + ""));
+                String player = (String) data.get(i + "");
+                if (player != Client.userName) {
+                    players.add(player);
+                }
             }
             //JSONArray playersArray = (JSONArray) responseObject.get("data");
             ObservableList<String> options = FXCollections.observableArrayList(players);

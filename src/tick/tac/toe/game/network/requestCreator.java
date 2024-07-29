@@ -33,11 +33,14 @@ public class requestCreator {
         return request.toString();
     }
     public static String logout(){
-        JSONObject userData = new JSONObject();
-        String userName = Client.userName;
-        userData.put("request","logout");
-        userData.put("username", userName);
-        return userData.toString();
+     JSONObject userData = new JSONObject();
+     JSONObject request = new JSONObject();
+     if(Client.userName != null)
+        userData.put("username", Client.userName);
+        request.put("request", "logout");
+        request.put("data", userData);
+        return request.toString();
+        
     }
     public static String getOnlinePlayersList(){
         JSONObject request = new JSONObject();

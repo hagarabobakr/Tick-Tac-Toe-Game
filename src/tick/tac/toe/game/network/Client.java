@@ -65,6 +65,7 @@ public class Client {
         if (request == null) {
             return;
         }
+        System.out.println(request);
         printStream.println(request);
 
     }
