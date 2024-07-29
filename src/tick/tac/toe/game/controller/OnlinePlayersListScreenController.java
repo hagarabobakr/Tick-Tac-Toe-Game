@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,6 +64,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
     public long size;
     public ArrayList<String> players = new ArrayList<>();
     private static volatile String r;
+    public ActionEvent event;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -96,7 +98,6 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
 
     }
 
-
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -109,9 +110,9 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
     private void handleImageAction(MouseEvent event) {
     }
 
-@Override
+    @Override
     public void onResponse(String response) {
-        try{
+
         JSONObject responseObject = (JSONObject) JSONValue.parse(response);
         if (responseObject.get("response").equals("onlinePlayersList")) {
             data = (JSONObject) responseObject.get("data");
@@ -127,10 +128,16 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
             ObservableList<String> options = FXCollections.observableArrayList(players);
             choosePlayer.setItems(options);
 
+        } else if (responseObject.get("response").equals("invitationReceived")) {
+            Platform.runLater(() -> {
+                try {
+                    changeScene(event, "/tick/tac/toe/game/view/InvitationScreen.fxml");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
         }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+
     }
 
     private void navigateToWaitingScreen() {
