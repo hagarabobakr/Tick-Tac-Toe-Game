@@ -44,11 +44,38 @@ public class requestCreator {
         request.put("request", "getOnlinePlayersList");
         return request.toString();
     }
-    public static String sendInvitation(String name){
+//    public static String sendInvitation(String name){
+//        JSONObject request = new JSONObject();
+//        request.put("request", "sendInvitation");
+//        request.put("name", name);
+//        return request.toString();
+//    }
+    public static String sendInvitation(String invitedPlayerName) {
+        JSONObject invitationData  = new JSONObject();
+        invitationData.put("invitationSender", Client.userName);
+        invitationData.put("invitationReceiver", invitedPlayerName);
         JSONObject request = new JSONObject();
         request.put("request", "sendInvitation");
-        request.put("name", name);
+        request.put("data", invitationData);
         return request.toString();
+    }
+    public static String acceptInvitation(String senderPlayerName) {
+        JSONObject responseData = new JSONObject();
+        responseData.put("acceptingPlayer", Client.userName);
+        responseData.put("sender", senderPlayerName);
+        JSONObject response = new JSONObject();
+        response.put("request", "acceptInvitation");
+        response.put("data", responseData);
+        return response.toString();
+    }
+    public static String declineInvitation(String senderPlayerName) {
+        JSONObject responseData = new JSONObject();
+        responseData.put("decliningPlayer", Client.userName);
+        responseData.put("sender", senderPlayerName);
+        JSONObject response = new JSONObject();
+        response.put("request", "declineInvitation");
+        response.put("data", responseData);
+        return response.toString();
     }
     
 }
