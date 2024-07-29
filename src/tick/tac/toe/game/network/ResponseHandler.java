@@ -41,7 +41,7 @@ public class ResponseHandler {
          }
         Platform.runLater(() -> {
             if (listener != null) {
-                listener.onResponse(responseString);
+                listener.onResponse(requestObject.toString());
             }
         });
     }
