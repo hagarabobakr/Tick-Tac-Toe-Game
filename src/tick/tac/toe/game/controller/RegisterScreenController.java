@@ -31,6 +31,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import tick.tac.toe.game.network.Client;
 import tick.tac.toe.game.network.ResponseHandler;
 import tick.tac.toe.game.network.ResponseListener;
@@ -84,7 +86,7 @@ public class RegisterScreenController implements Initializable, ResponseListener
                                 }
 
                             } else if (r.equals("playerExist")) {
-                                showAlert(Alert.AlertType.ERROR, "Player exist","player exist! please log in..");
+                                showAlert(Alert.AlertType.ERROR, "Player exist", "player exist! please log in..");
                             }
                         });
                     } catch (Exception e) {
@@ -148,6 +150,8 @@ public class RegisterScreenController implements Initializable, ResponseListener
 
     @Override
     public void onResponse(String response) {
+        JSONObject requestObject = (JSONObject) JSONValue.parse(response);
+        response = (String) requestObject.get("response");
         if (response.equals("successfulReqisration")) {
             r = "successfulReqisration";
         } else if (response.equals("playerExist")) {
