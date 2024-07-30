@@ -68,4 +68,12 @@ public class InvitationScreenController implements Initializable, ResponseListen
     public void onResponse(String response) {
 
     }
+
+    void setSenderName(String senderName) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setReciverName(String reciverName) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
