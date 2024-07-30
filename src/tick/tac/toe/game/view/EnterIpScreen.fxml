@@ -23,7 +23,7 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="60.0" prefWidth="850.0" stylesheets="@../../../../../resources/first.css">
+            <HBox prefHeight="60.0" prefWidth="850.0">
                <children>
                   <ImageView fx:id="backbtn" accessibleRole="BUTTON" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#handleImageAction" pickOnBounds="true" preserveRatio="true">
                      <image>
