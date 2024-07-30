@@ -42,32 +42,38 @@ public class InvitationScreenController implements Initializable, ResponseListen
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     void setSenderName(String senderName) {
         this.senderName = senderName;
-        System.out.println( this.senderName);
+        System.out.println(this.senderName);
     }
 
     void setReciverName(String reciverName) {
         this.reciverName = reciverName;
-        System.out.println( this.reciverName);
+        System.out.println(this.reciverName);
     }
+
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         if (event.getSource() == AcceptBtn) {
             Client.sendRequest(requestCreator.acceptInvitation(senderName));
             System.out.println(senderName);
-            changeScene(event, "/tick/tac/toe/game/view/GameBoardScreen.fxml");
+            changeScene(event, "/tick/tac/toe/game/view/GameBoardOnlineModeScreen.fxml");
 
         }
         if (event.getSource() == RefuseBtn) {
-             Client.sendRequest(requestCreator.declineInvitation(senderName));
+            Client.sendRequest(requestCreator.declineInvitation(senderName));
 
         }
 
     }
 
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent parent = loader.load();
+        GameBoardOnlineModeScreenController controller = loader.getController();
+        controller.setReciverName(reciverName);
+        controller.setSenderName(senderName);
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -79,5 +85,4 @@ public class InvitationScreenController implements Initializable, ResponseListen
 
     }
 
-    
 }

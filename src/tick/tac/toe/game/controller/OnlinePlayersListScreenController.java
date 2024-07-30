@@ -108,7 +108,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         InvitationScreenController controller = loader.getController();
         controller.setSenderName(senderName);
         controller.setReciverName(reciverName);
-        System.out.println(senderName + " " + reciverName + " from changeScene");
+        //System.out.println(senderName + " " + reciverName + " from changeScene");
 
         parent.getStylesheets().add(styleSheet);
         Scene scene = new Scene(parent);
