@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import tick.tac.toe.game.network.ResponseHandler;
 import tick.tac.toe.game.network.ResponseListener;
 
 /**
@@ -40,6 +41,8 @@ public class WaitingForOthersScreenController implements Initializable,ResponseL
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+                ResponseHandler.setListener(this);
+
     }
     private void changeScene(String fxmlFile) throws IOException {
     Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
@@ -55,11 +58,12 @@ public class WaitingForOthersScreenController implements Initializable,ResponseL
             try {
                 changeScene("/tick/tac/toe/game/view/GameBoardScreen.fxml");
             } catch (IOException ex) {
+                ex.printStackTrace();
                 //Logger.getLogger(WaitingForOthersScreenController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }else if(responseObject.get("response").equals("invitationDeclined")){
-            
+            System.out.println("invitationDeclined from onresponse");
         }
     }
     

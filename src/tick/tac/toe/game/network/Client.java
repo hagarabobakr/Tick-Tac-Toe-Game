@@ -65,7 +65,7 @@ public class Client {
         if (request == null) {
             return;
         }
-        System.out.println(request);
+        System.out.println(request + "from sendRequest in client.java");
         printStream.println(request);
 
     }

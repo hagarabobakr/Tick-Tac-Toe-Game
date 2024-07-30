@@ -6,6 +6,8 @@
 package tick.tac.toe.game.network;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -40,10 +42,18 @@ public class ResponseHandler {
              responseData.put("data",requestObject.get("data"));
              response = responseData.toString();
          }
+         if(Platform.isFxApplicationThread()){
+            if (listener != null) {
+                listener.onResponse(requestObject.toString());
+            }
+            
+         }else{
         Platform.runLater(() -> {
+            
             if (listener != null) {
                 listener.onResponse(requestObject.toString());
             }
         });
+         }
     }
 }
