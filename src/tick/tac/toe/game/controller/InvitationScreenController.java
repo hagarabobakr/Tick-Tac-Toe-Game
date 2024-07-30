@@ -36,21 +36,31 @@ public class InvitationScreenController implements Initializable, ResponseListen
 
     @FXML
     private Button RefuseBtn;
+    String senderName, reciverName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+    void setSenderName(String senderName) {
+        this.senderName = senderName;
+        System.out.println( this.senderName);
+    }
 
+    void setReciverName(String reciverName) {
+        this.reciverName = reciverName;
+        System.out.println( this.reciverName);
+    }
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         if (event.getSource() == AcceptBtn) {
-            //Client.sendRequest(requestCreator.acceptInvitation());
+            Client.sendRequest(requestCreator.acceptInvitation(senderName));
+            System.out.println(senderName);
             changeScene(event, "/tick/tac/toe/game/view/GameBoardScreen.fxml");
 
         }
         if (event.getSource() == RefuseBtn) {
-           // Client.sendRequest(requestCreator.declineInvitation(senderPlayerName));
+             Client.sendRequest(requestCreator.declineInvitation(senderName));
 
         }
 
@@ -69,11 +79,5 @@ public class InvitationScreenController implements Initializable, ResponseListen
 
     }
 
-    void setSenderName(String senderName) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void setReciverName(String reciverName) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

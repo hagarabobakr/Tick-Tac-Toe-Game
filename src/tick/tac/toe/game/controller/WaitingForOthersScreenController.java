@@ -53,7 +53,7 @@ public class WaitingForOthersScreenController implements Initializable,ResponseL
         JSONObject responseObject = (JSONObject) JSONValue.parse(response);
         if(responseObject.get("response").equals("invitationAccepted")){
             try {
-                changeScene("/tick/tac/toe/game/view/InvitationScreen.fxml");
+                changeScene("/tick/tac/toe/game/view/GameBoardScreen.fxml");
             } catch (IOException ex) {
                 //Logger.getLogger(WaitingForOthersScreenController.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -64,8 +64,8 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
     public long size;
     public ArrayList<String> players = new ArrayList<>();
     private static volatile String r;
-    private  String senderName ;
-    private  String reciverName ;
+    private String senderName;
+    private String reciverName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -108,6 +108,8 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         InvitationScreenController controller = loader.getController();
         controller.setSenderName(senderName);
         controller.setReciverName(reciverName);
+        System.out.println(senderName + " " + reciverName + " from changeScene");
+
         parent.getStylesheets().add(styleSheet);
         Scene scene = new Scene(parent);
         Stage stage = (Stage) Box.getScene().getWindow();
@@ -134,8 +136,6 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         if (responseObject.get("response").equals("onlinePlayersList")) {
             data = (JSONObject) responseObject.get("data");
             size = (long) responseObject.get("count");
-            senderName =(String) data.get("sender");
-            reciverName =(String) data.get("receiver");
 
             for (int i = 0; i < size; i++) {
                 String player = (String) data.get(i + "");
@@ -150,6 +150,12 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         } else if (responseObject.get("response").equals("invitationSent")) {
             Platform.runLater(() -> {
                 try {
+
+                    JSONObject data = (JSONObject) responseObject.get("data");
+                    senderName = (String) data.get("sender");
+                    reciverName = (String) data.get("receiver");
+                    System.out.println((String) data.get("sender")+ " sender from on response");
+
                     changeScene("/tick/tac/toe/game/view/InvitationScreen.fxml", "resources/styles/general.css");
                 } catch (Exception ex) {
                     ex.printStackTrace();
