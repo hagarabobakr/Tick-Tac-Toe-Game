@@ -23,7 +23,7 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="60.0" prefWidth="850.0" stylesheets="@../../../../../resources/first.css">
+            <HBox prefHeight="60.0" prefWidth="850.0">
                <children>
                   <ImageView fx:id="backbtn" accessibleRole="BUTTON" fitHeight="60.0" fitWidth="52.0" onMouseClicked="#handleImageAction" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -35,7 +35,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <TextField fx:id="txtIpAddress" opacity="0.5" prefHeight="72.0" prefWidth="439.0" promptText="ip address" styleClass="txtBox" stylesheets="@../resources/styles/general.css">
+            <TextField fx:id="txtIpAddress" opacity="0.5" prefHeight="72.0" prefWidth="500.0" promptText="ip address" styleClass="txtBox" stylesheets="@../resources/styles/general.css">
                <font>
                   <Font name="Jokerman" size="28.0" />
                </font>

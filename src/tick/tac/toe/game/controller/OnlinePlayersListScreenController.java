@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,6 +64,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
     public long size;
     public ArrayList<String> players = new ArrayList<>();
     private static volatile String r;
+  
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -78,12 +80,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
 
         if (selectedItem != null) {
             try {
-                //            // Prepare the invitation data
-//            JSONObject invitationData = new JSONObject();
-//            invitationData.put("type", "invitation");
-//            invitationData.put("sender", Client.userName);
-//            invitationData.put("receiver", selectedItem);
-                Client.sendRequest(requestCreator.sendInvitation(Client.userName));
+                Client.sendRequest(requestCreator.sendInvitation(selectedItem));
                 Thread.sleep(1000);
                 System.out.println("after sleep");
                 changeScene(event, "/tick/tac/toe/game/view/WaitingForOthersScreen.fxml");
@@ -96,8 +93,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         }
 
     }
-
-
+    
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -105,6 +101,22 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         stage.setScene(scene);
         stage.show();
     }
+    private void changeScene(String fxmlFile,String styleSheet) throws IOException {
+    Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+    parent.getStylesheets().add(styleSheet);
+    Scene scene = new Scene(parent);
+    Stage stage = (Stage) Box.getScene().getWindow();  
+    stage.setScene(scene);
+    stage.show();
+}
+    
+    private void changeScene(String fxmlFile) throws IOException {
+    Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+    Scene scene = new Scene(parent);
+    Stage stage = (Stage) Box.getScene().getWindow();  
+    stage.setScene(scene);
+    stage.show();
+}
 
     @FXML
     private void handleImageAction(MouseEvent event) {
@@ -130,9 +142,34 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
 
         }
 
+        JSONObject responseObject = (JSONObject) JSONValue.parse(response);
+        if (responseObject.get("response").equals("onlinePlayersList")) {
+            data = (JSONObject) responseObject.get("data");
+            size = (long) responseObject.get("count");
+
+            for (int i = 0; i < size; i++) {
+                String player = (String) data.get(i + "");
+                if (player != Client.userName) {
+                    players.add(player);
+                }
+            }
+            //JSONArray playersArray = (JSONArray) responseObject.get("data");
+            ObservableList<String> options = FXCollections.observableArrayList(players);
+            choosePlayer.setItems(options);
+
+        } else if (responseObject.get("response").equals("invitationSent")) {
+            Platform.runLater(() -> {
+                try {
+                    changeScene("/tick/tac/toe/game/view/InvitationScreen.fxml","resources/styles/general.css");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+        }
+
     }
 
     private void navigateToWaitingScreen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
