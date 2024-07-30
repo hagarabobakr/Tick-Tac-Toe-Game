@@ -31,6 +31,7 @@ public class ResponseHandler {
     }
     public static void handleResponse(String responseString) {
         JSONObject requestObject = (JSONObject) JSONValue.parse(responseString);
+        System.out.println(responseString);
          response = (String) requestObject.get("response");
          if(response.equals("onlinePlayersList")){
              JSONObject responseData = new JSONObject();

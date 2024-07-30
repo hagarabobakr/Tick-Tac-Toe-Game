@@ -80,11 +80,6 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
 
         if (selectedItem != null) {
             try {
-                //            // Prepare the invitation data
-//            JSONObject invitationData = new JSONObject();
-//            invitationData.put("type", "invitation");
-//            invitationData.put("sender", Client.userName);
-//            invitationData.put("receiver", selectedItem);
                 Client.sendRequest(requestCreator.sendInvitation(selectedItem));
                 Thread.sleep(1000);
                 changeScene(event, "/tick/tac/toe/game/view/WaitingForOthersScreen.fxml");
@@ -105,10 +100,19 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         stage.setScene(scene);
         stage.show();
     }
+    private void changeScene(String fxmlFile,String styleSheet) throws IOException {
+    Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+    parent.getStylesheets().add(styleSheet);
+    Scene scene = new Scene(parent);
+    Stage stage = (Stage) Box.getScene().getWindow();  
+    stage.setScene(scene);
+    stage.show();
+}
+    
     private void changeScene(String fxmlFile) throws IOException {
     Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
     Scene scene = new Scene(parent);
-    Stage stage = (Stage) Box.getScene().getWindow(); // استخدم عنصر موجود للحصول على المرحلة الحالية
+    Stage stage = (Stage) Box.getScene().getWindow();  
     stage.setScene(scene);
     stage.show();
 }
@@ -138,7 +142,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
         } else if (responseObject.get("response").equals("invitationSent")) {
             Platform.runLater(() -> {
                 try {
-                    changeScene("/tick/tac/toe/game/view/InvitationScreen.fxml");
+                    changeScene("/tick/tac/toe/game/view/InvitationScreen.fxml","resources/styles/general.css");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -148,6 +152,6 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
     }
 
     private void navigateToWaitingScreen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
