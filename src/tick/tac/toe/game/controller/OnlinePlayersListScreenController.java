@@ -85,6 +85,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
 //            invitationData.put("receiver", selectedItem);
                 Client.sendRequest(requestCreator.sendInvitation(Client.userName));
                 Thread.sleep(1000);
+                System.out.println("after sleep");
                 changeScene(event, "/tick/tac/toe/game/view/WaitingForOthersScreen.fxml");
             } catch (InterruptedException ex) {
                 Logger.getLogger(OnlinePlayersListScreenController.class.getName()).log(Level.SEVERE, null, ex);
@@ -110,7 +111,24 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
     }
 
     @Override
+    
     public void onResponse(String response) {
+        JSONObject responseObject = (JSONObject) JSONValue.parse(response);
+        if (responseObject.get("response").equals("onlinePlayersList")) {
+            data = (JSONObject) responseObject.get("data");
+            size = (long) responseObject.get("count");
+
+            for (int i = 0; i < size; i++) {
+                String player = (String) data.get(i + "");
+                if (player != Client.userName) {
+                    players.add(player);
+                }
+            }
+            //JSONArray playersArray = (JSONArray) responseObject.get("data");
+            ObservableList<String> options = FXCollections.observableArrayList(players);
+            choosePlayer.setItems(options);
+
+        }
 
     }
 
