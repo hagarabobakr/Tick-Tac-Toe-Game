@@ -22,8 +22,10 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import tick.tac.toe.game.network.Client;
 import tick.tac.toe.game.network.ResponseHandler;
 import tick.tac.toe.game.network.ResponseListener;
+import tick.tac.toe.game.network.requestCreator;
 
 /**
  * FXML Controller class
@@ -145,10 +147,12 @@ public class GameBoardOnlineModeScreenController implements Initializable,Respon
         }
         if (isXTurn) {
             clickedButton.setText(player1Symbol);
+            Client.sendRequest(requestCreator.sendMove(senderName, player1Symbol,clickedButton.getId() ));
             clickedButton.setStyle("-fx-text-fill: #FFD02D;");
             
         } else {
             clickedButton.setText(player2Symbol);
+            Client.sendRequest(requestCreator.sendMove(reciverName, player2Symbol,clickedButton.getId() ));
             clickedButton.setStyle("-fx-text-fill: #FFD02D;");
             
         }

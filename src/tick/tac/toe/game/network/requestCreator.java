@@ -82,5 +82,14 @@ public class requestCreator {
         response.put("data", responseData);
         return response.toString();
     }
-    
+    public static String sendMove(String sender, String sympole, String btnid) {
+        JSONObject responseData = new JSONObject();
+        responseData.put("playerName", sender);
+        responseData.put("sympol", sympole);
+        responseData.put("btn", btnid);
+        JSONObject response = new JSONObject();
+        response.put("request", "sendMove");
+        response.put("data",responseData);
+        return response.toString();
+    }
 }
