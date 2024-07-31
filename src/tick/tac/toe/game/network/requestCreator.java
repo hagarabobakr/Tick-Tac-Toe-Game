@@ -92,4 +92,13 @@ public class requestCreator {
         response.put("data",responseData);
         return response.toString();
     }
+    public static String getInvitedPlayers(String sender){
+        JSONObject responseData = new JSONObject();
+        responseData.put("senderName", sender);
+       
+        JSONObject response = new JSONObject();
+        response.put("request", "getInvitedPlayers");
+        response.put("data",responseData);
+        return response.toString();
+    }
 }

@@ -20,8 +20,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import tick.tac.toe.game.network.Client;
 import tick.tac.toe.game.network.ResponseHandler;
 import tick.tac.toe.game.network.ResponseListener;
+import tick.tac.toe.game.network.requestCreator;
 
 /**
  * FXML Controller class
@@ -34,7 +36,7 @@ public class WaitingForOthersScreenController implements Initializable, Response
     private VBox Box;
     @FXML
     private ProgressBar proBar;
-    private String ReciverName;
+    public static String ReciverName ,senderName;
 
     /**
      * Initializes the controller class.
@@ -43,15 +45,17 @@ public class WaitingForOthersScreenController implements Initializable, Response
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         ResponseHandler.setListener(this);
+                Client.sendRequest(requestCreator.getInvitedPlayers(ReciverName));
+
 
     }
 
     private void changeScene(String fxmlFile) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent parent = loader.load();
-        GameBoardOnlineModeScreenController controller = loader.getController();
+         GameBoardOnlineModeSenderScreenController controller = loader.getController();
         controller.setReciverName(ReciverName);
-
+        controller.setSenderName(senderName);
         Scene scene = new Scene(parent);
         Stage stage = (Stage) Box.getScene().getWindow();
         stage.setScene(scene);
@@ -62,11 +66,11 @@ public class WaitingForOthersScreenController implements Initializable, Response
     public void onResponse(String response) {
         JSONObject responseObject = (JSONObject) JSONValue.parse(response);
         ReciverName = (String) responseObject.get("acceptingPlayer");
-            System.out.println("-----------"+ReciverName+"from waiting ");
+        System.out.println("-----------" + ReciverName + "from waiting ");
         if (responseObject.get("response").equals("invitationAccepted")) {
             try {
 
-                changeScene("/tick/tac/toe/game/view/GameBoardOnlineModeScreen.fxml");
+                changeScene("/tick/tac/toe/game/view/GameBoardOnlineModeSenderScreen.fxml");
             } catch (IOException ex) {
                 ex.printStackTrace();
                 //Logger.getLogger(WaitingForOthersScreenController.class.getName()).log(Level.SEVERE, null, ex);
@@ -74,6 +78,10 @@ public class WaitingForOthersScreenController implements Initializable, Response
 
         } else if (responseObject.get("response").equals("invitationDeclined")) {
             System.out.println("invitationDeclined from onresponse");
+        }
+        else if(responseObject.get("response").equals("getPlayersInvited")){
+          JSONObject  data = (JSONObject) responseObject.get("data");
+           senderName =(String) data.get("sender");
         }
     }
 

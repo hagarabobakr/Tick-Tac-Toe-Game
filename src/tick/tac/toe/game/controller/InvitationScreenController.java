@@ -72,7 +72,7 @@ public class InvitationScreenController implements Initializable, ResponseListen
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent parent = loader.load();
         GameBoardOnlineModeScreenController controller = loader.getController();
-        //controller.setReciverName(reciverName);
+        controller.setReciverName(reciverName);
         controller.setSenderName(senderName);
         //System.out.println(reciverName +"  " +senderName + " from invitation screen");
         Scene scene = new Scene(parent);

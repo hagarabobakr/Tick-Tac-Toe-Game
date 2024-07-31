@@ -37,7 +37,7 @@ import tick.tac.toe.game.network.requestCreator;
  *
  * @author Electronica Care
  */
-public class GameBoardOnlineModeScreenController implements Initializable, ResponseListener {
+public class GameBoardOnlineModeSenderScreenController implements Initializable, ResponseListener {
 
     @FXML
     private Text playerXscore;
@@ -72,8 +72,8 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
     private int oScore = 0;
     private Button[][] board;
     private Button[] winningButtons;
-    public  String senderName;
-    public  String reciverName;
+    public String senderName;
+    public String reciverName;
     private String player1Symbol = "X";
     private String player2Symbol = "O";
 
@@ -83,8 +83,8 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        playerxName.setText(senderName);
-        playerOname.setText(reciverName);
+//        playerxName.setText(senderName);
+//        playerOname.setText(reciverName);
         playerxName.setVisible(true);
         playerOname.setVisible(true);
         playerXscore.setText(String.valueOf(xScore));
@@ -95,11 +95,11 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
             {Btn21, Btn22, Btn23},
             {Btn31, Btn32, Btn33}
         };
-        //disableButton(true);
         isGameOver = false;  // Initialize the game over flag
         isXTurn = true;  // Player 1 starts the game
-       // Client.sendRequest(requestCreator.getInvitedPlayers(reciverName));
+
         ResponseHandler.setListener(this);
+        
 
     }
 
@@ -114,6 +114,7 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
     void setReciverName(String reciverName) {
         this.reciverName = reciverName;
         playerOname.setText(reciverName);
+        //Client.sendRequest(requestCreator.getInvitedPlayers(reciverName));
 //    playerOscore.setText(String.valueOf(oScore));
 //    playerOname.setVisible(true);
 //    playerxName.setVisible(senderName != null && !senderName.isEmpty()); // Hide/Show playerxName based on its value
@@ -164,12 +165,11 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
             return; // Button already clicked
         }
         if (isXTurn) {
-            clickedButton.setText("O");
+            clickedButton.setText("X");
             clickedButton.setStyle("-fx-text-fill: #FFD02D;");
-            System.out.println("-----------" + reciverName + "from game board");
 
-            Client.sendRequest(requestCreator.sendMove(senderName, "O", clickedButton.getId()));
-        } 
+            Client.sendRequest(requestCreator.sendMove(senderName, "X", clickedButton.getId()));
+        }
         disableButton(true);
         //String symbol = isXTurn ? player1Symbol : player2Symbol;
         isXTurn = !isXTurn;
@@ -316,7 +316,10 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
                     System.out.println("from onResponse");
                     disableButton(false);
                 } 
-                
+//                else if (requestObject.get("response").equals("getPlayersInvited")) {
+//                    //JSONObject  data = (JSONObject) requestObject.get("data");
+//                    senderName = (String) data.get("sender");
+//                }
             });
         } catch (Exception ex) {
             Logger.getLogger(GameBoardOnlineModeScreenController.class.getName()).log(Level.SEVERE, null, ex);

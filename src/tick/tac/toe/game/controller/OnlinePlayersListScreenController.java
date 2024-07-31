@@ -95,7 +95,11 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
     }
 
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent parent = loader.load();
+        WaitingForOthersScreenController con = loader.getController();
+        con.ReciverName = reciverName;
+        con.senderName = senderName;
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -154,7 +158,7 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
                     JSONObject data = (JSONObject) responseObject.get("data");
                     senderName = (String) data.get("sender");
                     reciverName = (String) data.get("receiver");
-                    System.out.println((String) data.get("sender")+ " sender from on response");
+                    System.out.println((String) data.get("sender") + " sender from on response");
 
                     changeScene("/tick/tac/toe/game/view/InvitationScreen.fxml", "resources/styles/general.css");
                 } catch (Exception ex) {
