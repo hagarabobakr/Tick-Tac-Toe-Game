@@ -22,6 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import tick.tac.toe.game.network.Client;
 import tick.tac.toe.game.network.ResponseHandler;
 import tick.tac.toe.game.network.ResponseListener;
@@ -32,7 +34,7 @@ import tick.tac.toe.game.network.requestCreator;
  *
  * @author Electronica Care
  */
-public class GameBoardOnlineModeScreenController implements Initializable,ResponseListener {
+public class GameBoardOnlineModeScreenController implements Initializable, ResponseListener {
 
     @FXML
     private Text playerXscore;
@@ -60,7 +62,7 @@ public class GameBoardOnlineModeScreenController implements Initializable,Respon
     private Text playerOscore;
     @FXML
     private Text playerOname;
-    
+
     private boolean isXTurn;
     private boolean isGameOver;
     private int xScore = 0;
@@ -69,8 +71,9 @@ public class GameBoardOnlineModeScreenController implements Initializable,Respon
     private Button[] winningButtons;
     String senderName;
     String reciverName;
-     private String player1Symbol="X";
-    private String player2Symbol="O";
+    private String player1Symbol = "X";
+    private String player2Symbol = "O";
+
     /**
      * Initializes the controller class.
      */
@@ -92,24 +95,27 @@ public class GameBoardOnlineModeScreenController implements Initializable,Respon
         isGameOver = false;  // Initialize the game over flag
         isXTurn = true;  // Player 1 starts the game
         ResponseHandler.setListener(this);
-        
-    }  
+
+    }
+
     void setSenderName(String senderName) {
         this.senderName = senderName;
-       // System.out.println(this.senderName);
+        // System.out.println(this.senderName);
     }
 
     void setReciverName(String reciverName) {
         this.reciverName = reciverName;
-       // System.out.println(this.reciverName);
+        // System.out.println(this.reciverName);
     }
-     private void updateButtonWithSymbol(String buttonId, String symbol) {
+
+    private void updateButtonWithSymbol(String buttonId, String symbol) {
         Button button = getButtonById(buttonId);
         if (button != null) {
             button.setText(symbol);
             button.setStyle("-fx-text-fill: #FFD02D;");
         }
     }
+
     private Button getButtonById(String id) {
         switch (id) {
             case "Btn11":
@@ -134,7 +140,9 @@ public class GameBoardOnlineModeScreenController implements Initializable,Respon
                 return null;
         }
     }
+
     @FXML
+
     private void handleButtonAction(ActionEvent event) {
         if (isGameOver) {
             return;  // Do nothing if the game is over
@@ -145,21 +153,17 @@ public class GameBoardOnlineModeScreenController implements Initializable,Respon
         if (!clickedButton.getText().isEmpty()) {
             return; // Button already clicked
         }
-        if (isXTurn) {
-            clickedButton.setText(player1Symbol);
-            Client.sendRequest(requestCreator.sendMove(senderName, player1Symbol,clickedButton.getId() ));
-            clickedButton.setStyle("-fx-text-fill: #FFD02D;");
-            
-        } else {
-            clickedButton.setText(player2Symbol);
-            Client.sendRequest(requestCreator.sendMove(reciverName, player2Symbol,clickedButton.getId() ));
-            clickedButton.setStyle("-fx-text-fill: #FFD02D;");
-            
-        }
+
+        String symbol = isXTurn ? player1Symbol : player2Symbol;
+        clickedButton.setText(symbol);
+        clickedButton.setStyle("-fx-text-fill: #FFD02D;");
+
+        Client.sendRequest(requestCreator.sendMove(senderName, symbol, clickedButton.getId()));
 
         checkWinAndUpdateScore();
     }
-     private void checkWinAndUpdateScore() {
+
+    private void checkWinAndUpdateScore() {
         if (checkWin()) {
             if (isXTurn) {
                 xScore += 10;
@@ -180,7 +184,8 @@ public class GameBoardOnlineModeScreenController implements Initializable,Respon
             isXTurn = !isXTurn;
         }
     }
-     private boolean checkWin() {
+
+    private boolean checkWin() {
         // Check rows and columns
         for (int i = 0; i < 3; i++) {
             if (checkThree(board[i][0], board[i][1], board[i][2])) {
@@ -201,7 +206,8 @@ public class GameBoardOnlineModeScreenController implements Initializable,Respon
         }
         return false;
     }
-     private boolean checkThree(Button b1, Button b2, Button b3) {
+
+    private boolean checkThree(Button b1, Button b2, Button b3) {
         String s1 = b1.getText();
         return !s1.isEmpty() && s1.equals(b2.getText()) && s1.equals(b3.getText());
     }
@@ -216,11 +222,13 @@ public class GameBoardOnlineModeScreenController implements Initializable,Respon
         }
         return true;
     }
+
     private void drawWinningLine() {
         for (Button button : winningButtons) {
             button.setStyle("-fx-background-color: yellow;");
         }
     }
+
     private void moveToShowRewardVideoScreen() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tick/tac/toe/game/view/ShowRewardVideoScreen.fxml"));
@@ -252,6 +260,7 @@ public class GameBoardOnlineModeScreenController implements Initializable,Respon
             }
         });
     }
+
     private void resetBoard() {
         for (Button[] row : board) {
             for (Button button : row) {
@@ -261,8 +270,29 @@ public class GameBoardOnlineModeScreenController implements Initializable,Respon
         isGameOver = false;  // Reset the game over flag
         isXTurn = player1Symbol.equals("X");
     }
-      @Override
+
+    @Override
     public void onResponse(String response) {
-        
+                    System.out.println("from onResponse");
+
+        JSONObject requestObject = (JSONObject) JSONValue.parse(response);
+         String r = (String) requestObject.get("response");
+         if(r.equals("sendMove")){
+             JSONObject data = (JSONObject) requestObject.get("data");
+             Button b = getButtonById((String)data.get("btn"));
+             b.setText((String)data.get("sympol"));
+             System.out.println("from onResponse");
+         }
     }
+
+    public void handleIncomingMove(String playerName, String symbol, String buttonId) {
+        Button button = getButtonById(buttonId);
+        if (button != null && button.getText().isEmpty()) {
+            button.setText(symbol);
+            button.setStyle("-fx-text-fill: #FFD02D;");
+            checkWinAndUpdateScore();
+            isXTurn = !isXTurn;
+        }
+    }
+
 }
