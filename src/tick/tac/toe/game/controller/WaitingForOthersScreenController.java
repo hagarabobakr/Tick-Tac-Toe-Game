@@ -28,12 +28,13 @@ import tick.tac.toe.game.network.ResponseListener;
  *
  * @author Electronica Care
  */
-public class WaitingForOthersScreenController implements Initializable,ResponseListener {
+public class WaitingForOthersScreenController implements Initializable, ResponseListener {
 
     @FXML
     private VBox Box;
     @FXML
     private ProgressBar proBar;
+    private String ReciverName;
 
     /**
      * Initializes the controller class.
@@ -41,30 +42,39 @@ public class WaitingForOthersScreenController implements Initializable,ResponseL
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-                ResponseHandler.setListener(this);
+        ResponseHandler.setListener(this);
 
     }
+
     private void changeScene(String fxmlFile) throws IOException {
-    Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
-    Scene scene = new Scene(parent);
-    Stage stage = (Stage) Box.getScene().getWindow();  
-    stage.setScene(scene);
-    stage.show();
-}
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent parent = loader.load();
+        GameBoardOnlineModeScreenController controller = loader.getController();
+        controller.setReciverName(ReciverName);
+
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) Box.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
     @Override
     public void onResponse(String response) {
         JSONObject responseObject = (JSONObject) JSONValue.parse(response);
-        if(responseObject.get("response").equals("invitationAccepted")){
+        ReciverName = (String) responseObject.get("acceptingPlayer");
+            System.out.println("-----------"+ReciverName+"from waiting ");
+        if (responseObject.get("response").equals("invitationAccepted")) {
             try {
+
                 changeScene("/tick/tac/toe/game/view/GameBoardOnlineModeScreen.fxml");
             } catch (IOException ex) {
                 ex.printStackTrace();
                 //Logger.getLogger(WaitingForOthersScreenController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        }else if(responseObject.get("response").equals("invitationDeclined")){
+        } else if (responseObject.get("response").equals("invitationDeclined")) {
             System.out.println("invitationDeclined from onresponse");
         }
     }
-    
+
 }

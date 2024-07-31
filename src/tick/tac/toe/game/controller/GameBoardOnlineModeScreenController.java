@@ -63,14 +63,14 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
     @FXML
     private Text playerOname;
 
-    private boolean isXTurn;
-    private boolean isGameOver;
+    public static boolean isXTurn;
+    public static boolean isGameOver;
     private int xScore = 0;
     private int oScore = 0;
     private Button[][] board;
     private Button[] winningButtons;
-    String senderName;
-    String reciverName;
+    public static String  senderName;
+    public static String reciverName;
     private String player1Symbol = "X";
     private String player2Symbol = "O";
 
@@ -80,12 +80,12 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        playerxName.setText(senderName);
-        playerOname.setText(reciverName);
-        playerxName.setVisible(true);
-        playerOname.setVisible(true);
-        playerXscore.setText(String.valueOf(xScore));
-        playerOscore.setText(String.valueOf(oScore));
+//        playerxName.setText(senderName);
+//        playerOname.setText(reciverName);
+//        playerxName.setVisible(true);
+//        playerOname.setVisible(true);
+//        playerXscore.setText(String.valueOf(xScore));
+//        playerOscore.setText(String.valueOf(oScore));
 
         board = new Button[][]{
             {Btn11, Btn12, Btn13},
@@ -99,14 +99,20 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
     }
 
     void setSenderName(String senderName) {
-        this.senderName = senderName;
-        // System.out.println(this.senderName);
-    }
+    this.senderName = senderName;
+    playerxName.setText(senderName);
+    playerXscore.setText(String.valueOf(xScore));
+    playerxName.setVisible(true);
+    playerOname.setVisible(reciverName != null && !reciverName.isEmpty()); // Hide/Show playerOname based on its value
+}
 
     void setReciverName(String reciverName) {
-        this.reciverName = reciverName;
-        // System.out.println(this.reciverName);
-    }
+    this.reciverName = reciverName;
+    playerOname.setText(reciverName);
+    playerOscore.setText(String.valueOf(oScore));
+    playerOname.setVisible(true);
+    playerxName.setVisible(senderName != null && !senderName.isEmpty()); // Hide/Show playerxName based on its value
+}
 
     private void updateButtonWithSymbol(String buttonId, String symbol) {
         Button button = getButtonById(buttonId);
@@ -159,12 +165,15 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
 
             Client.sendRequest(requestCreator.sendMove(senderName, player1Symbol, clickedButton.getId()));
             disableButton(true);
+            isXTurn = false;
         } else {
-            clickedButton.setText(player1Symbol);
+            clickedButton.setText(player2Symbol);
             clickedButton.setStyle("-fx-text-fill: #FFD02D;");
+            System.out.println("-----------" + reciverName + "from game board");
 
             Client.sendRequest(requestCreator.sendMove(reciverName, player2Symbol, clickedButton.getId()));
             disableButton(true);
+            isXTurn = true;
         }
         //String symbol = isXTurn ? player1Symbol : player2Symbol;
 
@@ -278,20 +287,21 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
         isGameOver = false;  // Reset the game over flag
         isXTurn = player1Symbol.equals("X");
     }
-    
-    private void disableButton(boolean d){
+
+    private void disableButton(boolean d) {
         Btn11.setDisable(d);
         Btn12.setDisable(d);
         Btn13.setDisable(d);
-        
+
         Btn21.setDisable(d);
         Btn22.setDisable(d);
         Btn23.setDisable(d);
-        
+
         Btn31.setDisable(d);
         Btn32.setDisable(d);
         Btn33.setDisable(d);
     }
+
     @Override
     public void onResponse(String response) {
         System.out.println("from onResponse");
