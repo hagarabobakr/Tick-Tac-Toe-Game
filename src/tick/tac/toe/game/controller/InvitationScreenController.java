@@ -36,7 +36,7 @@ public class InvitationScreenController implements Initializable, ResponseListen
 
     @FXML
     private Button RefuseBtn;
-    String senderName, reciverName;
+    public static String senderName, reciverName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -74,6 +74,7 @@ public class InvitationScreenController implements Initializable, ResponseListen
         GameBoardOnlineModeScreenController controller = loader.getController();
         controller.setReciverName(reciverName);
         controller.setSenderName(senderName);
+        System.out.println(reciverName +"  " +senderName + " from invitation screen");
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

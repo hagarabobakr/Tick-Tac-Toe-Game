@@ -153,12 +153,20 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
         if (!clickedButton.getText().isEmpty()) {
             return; // Button already clicked
         }
+        if (isXTurn) {
+            clickedButton.setText(player1Symbol);
+            clickedButton.setStyle("-fx-text-fill: #FFD02D;");
 
-        String symbol = isXTurn ? player1Symbol : player2Symbol;
-        clickedButton.setText(symbol);
-        clickedButton.setStyle("-fx-text-fill: #FFD02D;");
+            Client.sendRequest(requestCreator.sendMove(senderName, player1Symbol, clickedButton.getId()));
+            disableButton(true);
+        } else {
+            clickedButton.setText(player1Symbol);
+            clickedButton.setStyle("-fx-text-fill: #FFD02D;");
 
-        Client.sendRequest(requestCreator.sendMove(senderName, symbol, clickedButton.getId()));
+            Client.sendRequest(requestCreator.sendMove(reciverName, player2Symbol, clickedButton.getId()));
+            disableButton(true);
+        }
+        //String symbol = isXTurn ? player1Symbol : player2Symbol;
 
         checkWinAndUpdateScore();
     }
@@ -270,19 +278,33 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
         isGameOver = false;  // Reset the game over flag
         isXTurn = player1Symbol.equals("X");
     }
-
+    
+    private void disableButton(boolean d){
+        Btn11.setDisable(d);
+        Btn12.setDisable(d);
+        Btn13.setDisable(d);
+        
+        Btn21.setDisable(d);
+        Btn22.setDisable(d);
+        Btn23.setDisable(d);
+        
+        Btn31.setDisable(d);
+        Btn32.setDisable(d);
+        Btn33.setDisable(d);
+    }
     @Override
     public void onResponse(String response) {
-                    System.out.println("from onResponse");
+        System.out.println("from onResponse");
 
         JSONObject requestObject = (JSONObject) JSONValue.parse(response);
-         String r = (String) requestObject.get("response");
-         if(r.equals("sendMove")){
-             JSONObject data = (JSONObject) requestObject.get("data");
-             Button b = getButtonById((String)data.get("btn"));
-             b.setText((String)data.get("sympol"));
-             System.out.println("from onResponse");
-         }
+        String r = (String) requestObject.get("response");
+        if (r.equals("sendMove")) {
+            JSONObject data = (JSONObject) requestObject.get("data");
+            Button b = getButtonById((String) data.get("btn"));
+            b.setText((String) data.get("sympol"));
+            System.out.println("from onResponse");
+            disableButton(false);
+        }
     }
 
     public void handleIncomingMove(String playerName, String symbol, String buttonId) {
