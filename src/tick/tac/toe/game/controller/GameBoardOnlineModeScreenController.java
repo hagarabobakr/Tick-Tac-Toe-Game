@@ -72,8 +72,8 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
     private int oScore = 0;
     private Button[][] board;
     private Button[] winningButtons;
-    public  String senderName;
-    public  String reciverName;
+    public String senderName;
+    public String reciverName;
     private String player1Symbol = "X";
     private String player2Symbol = "O";
 
@@ -98,7 +98,7 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
         //disableButton(true);
         isGameOver = false;  // Initialize the game over flag
         isXTurn = true;  // Player 1 starts the game
-       // Client.sendRequest(requestCreator.getInvitedPlayers(reciverName));
+        // Client.sendRequest(requestCreator.getInvitedPlayers(reciverName));
         ResponseHandler.setListener(this);
 
     }
@@ -163,14 +163,14 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
         if (!clickedButton.getText().isEmpty()) {
             return; // Button already clicked
         }
-        if (isXTurn) {
+        //if (isXTurn) {
             clickedButton.setText("O");
             clickedButton.setStyle("-fx-text-fill: #FFD02D;");
             System.out.println("-----------" + reciverName + "from game board");
 
-            Client.sendRequest(requestCreator.sendMove(senderName, "O", clickedButton.getId()));
-        } 
-        disableButton(true);
+            Client.sendRequest(requestCreator.sendMove(InvitationScreenController.senderName, "O", clickedButton.getId()));
+       // }
+        //disableButton(true);
         //String symbol = isXTurn ? player1Symbol : player2Symbol;
         isXTurn = !isXTurn;
 
@@ -311,12 +311,15 @@ public class GameBoardOnlineModeScreenController implements Initializable, Respo
                 JSONObject data = (JSONObject) requestObject.get("data");
 
                 if (r.equals("sendMove")) {
-                    Button b = getButtonById((String) data.get("btn"));
-                    b.setText((String) data.get("sympol"));
-                    System.out.println("from onResponse");
-                    disableButton(false);
-                } 
-                
+                    String s = (String) data.get("sympol");
+                    if (s.equals("X")) {
+                        Button b = getButtonById((String) data.get("btn"));
+                        b.setText(s);
+                        System.out.println("from onResponse");
+                        disableButton(false);
+                    }
+                }
+
             });
         } catch (Exception ex) {
             Logger.getLogger(GameBoardOnlineModeScreenController.class.getName()).log(Level.SEVERE, null, ex);

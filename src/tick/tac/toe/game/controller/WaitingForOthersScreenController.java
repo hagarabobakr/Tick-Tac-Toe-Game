@@ -55,7 +55,9 @@ public class WaitingForOthersScreenController implements Initializable, Response
         Parent parent = loader.load();
          GameBoardOnlineModeSenderScreenController controller = loader.getController();
         controller.setReciverName(ReciverName);
-        controller.setSenderName(senderName);
+        controller.setSenderName(OnlinePlayersListScreenController.senderName);
+        System.out.println(ReciverName + senderName);
+   
         Scene scene = new Scene(parent);
         Stage stage = (Stage) Box.getScene().getWindow();
         stage.setScene(scene);

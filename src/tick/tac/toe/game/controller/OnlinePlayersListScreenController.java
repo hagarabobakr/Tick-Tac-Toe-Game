@@ -64,8 +64,8 @@ public class OnlinePlayersListScreenController implements Initializable, Respons
     public long size;
     public ArrayList<String> players = new ArrayList<>();
     private static volatile String r;
-    private String senderName;
-    private String reciverName;
+    public static String senderName;
+    public static String reciverName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -82,9 +82,11 @@ public class GameBoardOnlineModeSenderScreenController implements Initializable,
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-//        playerxName.setText(senderName);
-//        playerOname.setText(reciverName);
+      
+            // TODO
+       playerxName.setText("sara");
+     playerOname.setText("sara");
+        
         playerxName.setVisible(true);
         playerOname.setVisible(true);
         playerXscore.setText(String.valueOf(xScore));
@@ -164,12 +166,12 @@ public class GameBoardOnlineModeSenderScreenController implements Initializable,
         if (!clickedButton.getText().isEmpty()) {
             return; // Button already clicked
         }
-        if (isXTurn) {
+      //  if (isXTurn) {
             clickedButton.setText("X");
             clickedButton.setStyle("-fx-text-fill: #FFD02D;");
 
-            Client.sendRequest(requestCreator.sendMove(senderName, "X", clickedButton.getId()));
-        }
+            Client.sendRequest(requestCreator.sendMove(InvitationScreenController.reciverName, "X", clickedButton.getId()));
+       // }
         disableButton(true);
         //String symbol = isXTurn ? player1Symbol : player2Symbol;
         isXTurn = !isXTurn;
@@ -311,10 +313,13 @@ public class GameBoardOnlineModeSenderScreenController implements Initializable,
                 JSONObject data = (JSONObject) requestObject.get("data");
 
                 if (r.equals("sendMove")) {
+                    String s=(String) data.get("sympol");
+                    if(s.equals("O")){
                     Button b = getButtonById((String) data.get("btn"));
-                    b.setText((String) data.get("sympol"));
+                    b.setText(s);
                     System.out.println("from onResponse");
                     disableButton(false);
+                    }
                 } 
 //                else if (requestObject.get("response").equals("getPlayersInvited")) {
 //                    //JSONObject  data = (JSONObject) requestObject.get("data");
